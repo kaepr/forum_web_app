@@ -56,8 +56,8 @@ app.delete('/api/delete/:userName',(req,res)=>{
 // PUT(UPDATE) request to update user details!
 app.put('/api/update',(req,res)=>{
     const userName = req.body.userName;
-    const userAge = req.body.userAge;
-    const updateQuery = "UPDATE SET user age=? WHERE name=?";
+    const userAge = parseInt(req.body.userAge);
+    const updateQuery = "UPDATE user SET age=? WHERE name=?";
     db.query(updateQuery,[userAge,userName],(err,result)=>{
         if (err) console.log(err)
     });

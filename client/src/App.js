@@ -8,6 +8,8 @@ function App() {
 
   const[userList,setUserList] = useState([]);
 
+  const [newAge,setNewAge] = useState(0);
+
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response)=>{
       console.log(response.data);
@@ -23,6 +25,11 @@ function App() {
   const deleteUser = (userName) => {
     Axios.delete(`http://localhost:3001/api/delete/${userName}`);
   };
+
+  const updateAge = (userName) => {
+    Axios.put('http://localhost:3001/api/update',{userName: userName, userAge: newAge});
+    setNewAge("");  
+};
 
   return (
     <div className="App">
@@ -40,8 +47,10 @@ function App() {
         <h1> UserName: {val.name}</h1> 
         <p1>Age: {val.age}</p1>
         <button onClick={()=>{deleteUser(val.name)}}>Delete</button>
-        <input type="number"/>
-        <button>Update</button>
+        <input type="number" id="updateAge" onChange={(e)=>{
+          setNewAge(e.target.value);
+        }}/>
+        <button onClick={()=> {updateAge(val.name)}}>Update</button>
         </div>
       );
     })}
