@@ -6,6 +6,11 @@ node_modules
 .pnp.js
 .vscode
 
+.package-lock.json
+.package-lock.json
+
+yarn.lock
+
 # testing
 /coverage
 
