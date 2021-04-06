@@ -64,6 +64,6 @@ app.put('/api/update',(req,res)=>{
 });
 
 
-app.listen(3001, ()=>{
+app.listen(3002, ()=>{
     console.log("HELLO FROM THE SERVER!!RUNNING ON PORT 3001");
 });
