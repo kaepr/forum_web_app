@@ -18,7 +18,6 @@ const db = mysql.createConnection({
 //     db.query(insertValue,(err,result)=>{
 //         res.send('YO! SSUP?');
 //     });
-   
 // });
 
 //middleware
@@ -62,7 +61,6 @@ app.put('/api/update',(req,res)=>{
         if (err) console.log(err)
     });
 });
-
 
 app.listen(3001, ()=>{
     console.log("HELLO FROM THE SERVER!!RUNNING ON PORT 3001");
