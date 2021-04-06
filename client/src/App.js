@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
+import { Button } from "@chakra-ui/react";
 
 function App() {
   const [name, setUserName] = useState("");
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className="App">
+      <Button colorScheme="blue">Test</Button>
       <h1>SIGNUP PAGE</h1>
       <div className="form-container">
         <label>UserName: </label>
