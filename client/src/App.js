@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import Axios from "axios";
-import { Button } from "@chakra-ui/react";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import Axios from 'axios';
+import { Button } from '@chakra-ui/react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   useRouteMatch,
-  useParams
-} from "react-router-dom";
+  useParams,
+} from 'react-router-dom';
 
 export default function App() {
   return (
-<Router>
+    <Router>
       <div>
         <nav>
           <ul>
@@ -32,15 +32,9 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            hello
-          </Route>
-          <Route path="/users">
-            hi
-          </Route>
-          <Route path="/">
-            hi
-          </Route>
+          <Route path="/about">hello</Route>
+          <Route path="/users">hi</Route>
+          <Route path="/">hi</Route>
         </Switch>
       </div>
     </Router>
@@ -79,8 +73,8 @@ export default function App() {
 //     setNewAge("");
 //   };
 
-
-{/* <Button colorScheme="blue">Test</Button>
+{
+  /* <Button colorScheme="blue">Test</Button>
 <h1>SIGNUP PAGE</h1>
 <div className="form-container">
   <label>UserName: </label>
@@ -129,4 +123,5 @@ export default function App() {
       </button>
     </div>
   );
-})} */}
+})} */
+}
