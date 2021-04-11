@@ -1,15 +1,10 @@
+/* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Axios from 'axios';
 import { Button } from '@chakra-ui/react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import PostPage from './component/Post/PostPage';
 
 export default function App() {
   return (
@@ -26,15 +21,21 @@ export default function App() {
             <li>
               <Link to="/users">Users</Link>
             </li>
+            <li>
+              <Link to="/posts">Posts Page</Link>
+            </li>
           </ul>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">hello</Route>
-          <Route path="/users">hi</Route>
-          <Route path="/">hi</Route>
+          <Route path="/" exact>
+            hi
+          </Route>
+          <Route path="/about">About</Route>
+          <Route path="/users">Users</Route>
+          <Route path="/posts" component={PostPage} />
         </Switch>
       </div>
     </Router>
