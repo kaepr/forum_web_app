@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import {
@@ -15,21 +16,22 @@ breakpoints.md = breakpoints[1];
 breakpoints.lg = breakpoints[2];
 breakpoints.xl = breakpoints[3];
 
+
 export default function App() {
   return (
-<Router>
+    <Router>
       <div>
-       <Header/>
+      <Header/>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            
+          <Route path="/" exact>
+            <Home/>
           </Route>
-          <Route path="/users">
-            hi
-          </Route>
-          <Route path="/">
-          <Home/>
-          </Route>
+          <Route path="/about">About</Route>
+          <Route path="/users">Users</Route>
+          <Route path="/posts"/>
         </Switch>
       </div>
     </Router>
@@ -68,8 +70,8 @@ export default function App() {
 //     setNewAge("");
 //   };
 
-
-{/* <Button colorScheme="blue">Test</Button>
+{
+  /* <Button colorScheme="blue">Test</Button>
 <h1>SIGNUP PAGE</h1>
 <div className="form-container">
   <label>UserName: </label>
@@ -118,4 +120,5 @@ export default function App() {
       </button>
     </div>
   );
-})} */}
+})} */
+}
