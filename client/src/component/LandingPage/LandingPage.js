@@ -10,23 +10,28 @@ import MyProfile from '../Dashboard/MyProfile';
 
 export default function LandingPage() {
   return (
-    <Box w="100%" h="100%" bgGradient="linear(to-t, blue.800, blue.900)" padding="65px" align="center">
-      
-        <Box
-          bg="white"
-          minH="80vh"
-          align="center"
-          width="80%"
-          borderRadius="lg"
-          boxShadow="dark-lg"
-        >
-          <Box d="flex-col" p="6" >
-            <Box bg="primary.100" width="90%" borderRadius="lg" boxShadow="lg" p="2">             
-                <Text
-                  fontSize="32px"
-                  fontWeight="bold"
-                  textTransform="uppercase"
-                  letterSpacing="1px"
+    <Box h="100%" padding="65px" align="center">
+      <Box
+        bg="gray.200"
+        minH="80vh"
+        align="center"
+        width="80%"
+        borderRadius="lg"
+        boxShadow="dark-lg"
+      >
+        <Box d="flex-col" p="6">
+          <Box
+            bg="primary.100"
+            width="90%"
+            borderRadius="lg"
+            boxShadow="lg"
+            p="2"
+          >
+            <Text
+              fontSize="32px"
+              fontWeight="bold"
+              textTransform="uppercase"
+              letterSpacing="1px"
                 >
                   Forum App
                 </Text>
@@ -36,26 +41,34 @@ export default function LandingPage() {
               justifyContent="space-between"
               minH="70vh"
             >
-              <Box pt="6">
-                <Header />
-                <Box pt="8">
+              Forum App
+            </Text>
+          </Box>
+          <Flex
+            flexDirection="column"
+            justifyContent="space-between"
+            minH="70vh"
+          >
+            <Box pt="6">
+              <Header />
+              <Box pt="8">
                 <Switch>
                   <Route path="/" component={Home} exact />
                   <Route path="/posts" component={PostPage} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={SignUp} />
-                  <Route path="/profile" component={MyProfile}/>
+                  <Route path="/profile" component={MyProfile} />
                   <Route path="/users">Users</Route>
                 </Switch>
               </Box>
-              </Box>
+            </Box>
 
-              <Box>
-                <div>Copyright &copy; 2021. All rights reserved.</div>
-              </Box>
-            </Flex>
-          </Box>
+            <Box>
+              <div>Copyright &copy; 2021. All rights reserved.</div>
+            </Box>
+          </Flex>
         </Box>
+      </Box>
     </Box>
   );
 }
