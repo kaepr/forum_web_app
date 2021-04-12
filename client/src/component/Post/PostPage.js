@@ -8,7 +8,7 @@ import IndividualPost from './IndividualPost';
  */
 
 const PostPage = () => {
-  return <div>All Post Page</div>;
+  return <div>Post Page</div>;
 };
 
 export default PostPage;

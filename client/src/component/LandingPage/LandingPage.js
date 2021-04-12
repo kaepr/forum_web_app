@@ -39,16 +39,16 @@ export default function LandingPage() {
             >
               <Box pt="6">
                 <Header />
-              </Box>
-              <Box>
-                <Switch>
-                  <Route path="/" component={Home} exact />
-                  <Route path="/posts" component={PostPage} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/signup" component={SignUp} />
-                  <Route path="/about">About</Route>
-                  <Route path="/users">Users</Route>
-                </Switch>
+                <Box pt="8">
+                  <Switch>
+                    <Route path="/" component={Home} exact />
+                    <Route path="/posts" component={PostPage} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={SignUp} />
+                    <Route path="/about">About</Route>
+                    <Route path="/users">Users</Route>
+                  </Switch>
+                </Box>
               </Box>
               <Box>
                 <div>Copyright &copy; 2021. All rights reserved.</div>
