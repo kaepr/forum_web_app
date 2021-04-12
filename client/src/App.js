@@ -1,9 +1,9 @@
+/* eslint-disable no-lone-blocks */
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Landing from './component/LandingPage/LandingPage';
-
 
 const breakpoints = ['360px', '768px', '1024px', '1440px'];
 breakpoints.sm = breakpoints[0];
@@ -13,9 +13,9 @@ breakpoints.xl = breakpoints[3];
 
 export default function App() {
   return (
-   <Router>
+    <Router>
       <div>
-      <Landing/>
+        <Landing />
       </div>
     </Router>
   );
