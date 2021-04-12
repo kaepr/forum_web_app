@@ -8,7 +8,6 @@ const theme = extendTheme({
   colors: {
     primary: {
       100: "#EEA47FFF",
-      // ...
       900: "#00539CFF",
     },
   },

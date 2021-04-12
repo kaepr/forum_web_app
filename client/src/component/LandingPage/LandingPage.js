@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Heading, Flex, Text, LinkOverlay, Link } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PostPage from '../Post/PostPage';
 import Header from '../Header/Header';
 
 export default function LandingPage(){
@@ -17,9 +19,16 @@ export default function LandingPage(){
                 <Box pt="6">
                     <Header/>
                 </Box>
+                <Router>
                 <Box>
-                    SOME INTRO ABOUT THE APP
-                </Box>     
+                <Switch>
+                    <Route path="/" exact/>
+                    <Route path="/about">About</Route>
+                    <Route path="/users">Users</Route>
+                    <Route path="/posts" component={PostPage}/>
+                    </Switch>
+                </Box> 
+                </Router>    
                 <Box>
                     <div>
                         Copyright &copy; 2021. All rights reserved.
@@ -31,5 +40,5 @@ export default function LandingPage(){
     </Box>
     </Box>
 </Box>
-    )
-} 
+    );
+};
