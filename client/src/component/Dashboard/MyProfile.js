@@ -27,7 +27,14 @@ export default function MyProfile() {
         boxShadow="lg"
       >
         {' '}
-        <Box pl="4" pr="4" fontSize="18px" letterSpacing="0.5px" borderColor="gray.300" width="100%">
+        <Box
+          pl="4"
+          pr="4"
+          fontSize="18px"
+          letterSpacing="0.5px"
+          borderColor="gray.300"
+          width="100%"
+        >
           <Box
             pb="4"
             d="flex"
@@ -51,6 +58,28 @@ export default function MyProfile() {
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Phone Number</Text>
             <Text>2838383831</Text>
+          </Box>
+          <Divider height="0.5px" />
+          <Box
+            pb="4"
+            pt="4"
+            d="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Text fontWeight="semibold">Age</Text>
+            <Text>20</Text>
+          </Box>
+          <Divider height="0.5px" />
+          <Box
+            pb="4"
+            pt="4"
+            d="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Text fontWeight="semibold">Occupation</Text>
+            <Text>Student</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
