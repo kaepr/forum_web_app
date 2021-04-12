@@ -32,6 +32,14 @@ export default function LandingPage() {
               fontWeight="bold"
               textTransform="uppercase"
               letterSpacing="1px"
+                >
+                  Forum App
+                </Text>
+            </Box>
+            <Flex
+              flexDirection="column"
+              justifyContent="space-between"
+              minH="70vh"
             >
               Forum App
             </Text>
