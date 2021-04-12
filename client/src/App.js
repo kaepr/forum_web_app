@@ -8,6 +8,7 @@ import {
   Link } from "react-router-dom";
 
 import Landing from './component/LandingPage/LandingPage';
+import PostPage from './component/Post/PostPage';
 
 const breakpoints = ["360px", "768px", "1024px", "1440px"];
 breakpoints.sm = breakpoints[0];
@@ -19,13 +20,13 @@ export default function App() {
   return (
     <Router>
       <div>
+      <Landing/>
         <Switch>
-          <Route path="/" exact>
-            <Landing/>
-          </Route>
+          <Route path="/" exact/>
           <Route path="/about">About</Route>
           <Route path="/users">Users</Route>
-          <Route path="/posts"/>
+          <Route path="/posts" component={PostPage}/>
+ 
         </Switch>
       </div>
     </Router>
