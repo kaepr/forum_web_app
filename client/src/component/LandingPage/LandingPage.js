@@ -10,7 +10,7 @@ import MyProfile from '../Dashboard/MyProfile';
 
 export default function LandingPage() {
   return (
-    <Box w="100%" h="100vh" bgGradient="linear(to-t, blue.800, blue.900)" overflow="scroll"  padding="65px" align="center">
+    <Box w="100%" h="100%" bgGradient="linear(to-t, blue.800, blue.900)" padding="65px" align="center">
       
         <Box
           bg="white"
