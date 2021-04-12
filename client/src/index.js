@@ -2,11 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ChakraProvider } from '@chakra-ui/react'; 
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'; 
+
+const theme = extendTheme({
+  colors: {
+    primary: {
+      100: "#EEA47FFF",
+      // ...
+      900: "#00539CFF",
+    },
+  },
+})
 
 ReactDOM.render(
   <React.StrictMode>
-  <ChakraProvider>
+  <ChakraProvider theme = {theme}>
     <App />
     </ChakraProvider>
   </React.StrictMode>,
