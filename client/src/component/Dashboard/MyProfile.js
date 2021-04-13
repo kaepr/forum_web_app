@@ -10,7 +10,6 @@ export default function MyProfile() {
           fontSize="3xl"
           fontWeight="semibold"
           letterSpacing="1px"
-          fontFamily="-moz-initial"
         >
           User Profile
         </Text>
@@ -49,11 +48,6 @@ export default function MyProfile() {
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Email ID</Text>
             <Text>xyz@gmail.com</Text>
-          </Box>
-          <Divider height="0.5px" />
-          <Box pb="4" pt="4" d="flex" justifyContent="space-between">
-            <Text fontWeight="semibold">User Name</Text>
-            <Text>xyz_1234</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
