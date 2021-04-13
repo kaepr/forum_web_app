@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import { Box } from '@chakra-ui/react';
 import Landing from './component/LandingPage/LandingPage';
 
 const breakpoints = ['360px', '768px', '1024px', '1440px'];
@@ -14,9 +14,16 @@ breakpoints.xl = breakpoints[3];
 export default function App() {
   return (
     <Router>
-      <div>
+      <Box
+        w="100%"
+        h="100%"
+        bgGradient="linear(to-t, blue.800, blue.900)"
+        padding="65px"
+        // margin="65px"
+        align="center"
+      >
         <Landing />
-      </div>
+      </Box>
     </Router>
   );
 }

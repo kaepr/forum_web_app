@@ -15,6 +15,7 @@ export default function LandingPage() {
       h="100%"
       bgGradient="linear(to-t, blue.800, blue.900)"
       padding="65px"
+      // margin="65px"
       align="center"
     >
       <Box
