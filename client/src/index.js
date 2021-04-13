@@ -1,28 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'; 
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'jotai';
+
+const queryClient = new QueryClient();
 
 const theme = extendTheme({
   colors: {
     primary: {
-      100: "#EEA47FFF",
-      900: "#00539CFF",
-    },
-  },
-})
+      100: '#EEA47FFF',
+      900: '#00539CFF'
+    }
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-  <ChakraProvider theme = {theme}>
-    <App />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <Provider>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
