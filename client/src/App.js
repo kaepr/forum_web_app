@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css';
 import { Box } from '@chakra-ui/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
 import Landing from './component/LandingPage/LandingPage';
 
 const breakpoints = ['360px', '768px', '1024px', '1440px'];
