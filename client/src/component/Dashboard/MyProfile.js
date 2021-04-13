@@ -7,11 +7,12 @@ export default function MyProfile() {
       <Box>
         <Text
           textTransform="uppercase"
-          fontSize="2xl"
+          fontSize="3xl"
           fontWeight="semibold"
           letterSpacing="1px"
+          fontFamily="-moz-initial"
         >
-          My Profile
+          User Profile
         </Text>
       </Box>
 
