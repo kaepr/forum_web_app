@@ -177,7 +177,7 @@ export const logout = async (req, res) => {
 
 export const isLoggedIn = async (req, res) => {
   try {
-    console.log('here');
+    // console.log('here');
     const token = req.cookies.token;
     if (!token || token === undefined) return res.json(false);
     jwt.verify(token, JWT_SECRET);
