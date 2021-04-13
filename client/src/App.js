@@ -1,6 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react';
 import './App.css';
+import { Box } from '@chakra-ui/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import Landing from './component/LandingPage/LandingPage';
@@ -14,14 +15,7 @@ breakpoints.xl = breakpoints[3];
 export default function App() {
   return (
     <Router>
-      <Box
-        w="100%"
-        h="100%"
-        bgGradient="linear(to-t, blue.800, blue.900)"
-        padding="65px"
-        // margin="65px"
-        align="center"
-      >
+      <Box h="100%" bgGradient="linear(to-t, blue.800, blue.900)">
         <Landing />
       </Box>
     </Router>

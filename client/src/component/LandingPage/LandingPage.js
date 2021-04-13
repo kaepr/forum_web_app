@@ -10,16 +10,9 @@ import MyProfile from '../Dashboard/MyProfile';
 
 export default function LandingPage() {
   return (
-    <Box
-      w="100%"
-      h="100%"
-      bgGradient="linear(to-t, blue.800, blue.900)"
-      padding="65px"
-      // margin="65px"
-      align="center"
-    >
+    <Box h="100%" padding="65px" align="center">
       <Box
-        bg="white"
+        bg="gray.200"
         minH="80vh"
         align="center"
         width="80%"
