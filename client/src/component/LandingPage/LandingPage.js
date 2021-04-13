@@ -7,6 +7,7 @@ import Home from '../Home/Home';
 import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
 import MyProfile from '../Dashboard/MyProfile';
+import IndividualPost from '../Post/IndividualPost';
 
 export default function LandingPage() {
   return (
@@ -50,6 +51,7 @@ export default function LandingPage() {
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={SignUp} />
                   <Route path="/profile" component={MyProfile} />
+                  <Route path="/indiPost" component={IndividualPost} />
                   <Route path="/users">Users</Route>
                 </Switch>
               </Box>
