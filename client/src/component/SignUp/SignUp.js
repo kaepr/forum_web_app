@@ -17,7 +17,6 @@ const SignUp = () => {
           CREATE A NEW ACCOUNT
         </Text>
       </Box>
-
   <Box w="50%" minH="80%" bg="gray.200" boxShadow="lg" rounded="lg" p="6" mb="4">
     <form action = 'submit'>
       <Stack spacing={3} >
@@ -87,5 +86,4 @@ const SignUp = () => {
   </Box>
   )
 };
-
 export default SignUp;
