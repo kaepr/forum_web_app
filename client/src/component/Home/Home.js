@@ -1,5 +1,7 @@
+import CreatePost from "../Post/CreatePost"
+
 const Home = () => {
-  return <div>Home Area Here</div>;
+  return <div>home page</div>;
 };
 
 export default Home;

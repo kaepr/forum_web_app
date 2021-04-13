@@ -6,7 +6,14 @@ import { Link as RouterLink } from 'react-router-dom';
 const PostPage = () => {
   return (<Box w="80%" h="80%">
 <Box w="100%" h="80%" rounded="lg" display="flex" alignItems="left" mt="5">
-        <Button leftIcon={<AddIcon w={3} h={3}/>}>Add Post</Button>
+        <Button leftIcon={<AddIcon w={3} h={3}/>}type="submit"
+          bgColor="green.400"
+          variant="solid"
+          boxShadow="lg"
+          _hover={{ background: 'green.400' }}
+          color="gray.200"
+          fontSize="14px"
+          p="4">Add Posts</Button>
     </Box>
     <Box  mt="5" bg="blue.200" borderRadius="lg" >
      <Box pt="3" d="flex" justifyContent="space-between" w="95%" h="80%" align>
