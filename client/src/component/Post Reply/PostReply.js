@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Box, Flex, Divider } from '@chakra-ui/react';
 import { CalendarIcon, InfoIcon } from '@chakra-ui/icons';
 
-export default function PostReply() {
+export default function PostReply(props) {
   return (
     <Flex
       align="left"

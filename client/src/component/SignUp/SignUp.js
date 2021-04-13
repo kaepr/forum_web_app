@@ -35,7 +35,7 @@ const SignUp = () => {
       <Box
         w="50%"
         minH="80%"
-        bg="gray.200"
+        bg="white"
         boxShadow="lg"
         rounded="lg"
         p="6"
@@ -52,7 +52,6 @@ const SignUp = () => {
                   aria-label="User Name"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>
@@ -65,7 +64,6 @@ const SignUp = () => {
                   aria-label="Name"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>
@@ -78,7 +76,6 @@ const SignUp = () => {
                   placeholder="Password"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
                 <InputRightElement width="4.5rem">
                   <Button
@@ -86,7 +83,6 @@ const SignUp = () => {
                     size="xs"
                     onClick={handleClick}
                     variant="ghost"
-                    fontFamily="cursive"
                   >
                     {show ? 'HIDE' : 'SHOW'}
                   </Button>
@@ -102,7 +98,6 @@ const SignUp = () => {
                   placeholder="Confirm Password"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
                 <InputRightElement width="4.5rem">
                   <Button
@@ -110,7 +105,6 @@ const SignUp = () => {
                     size="xs"
                     onClick={handleClick}
                     variant="ghost"
-                    fontFamily="cursive"
                   >
                     {show ? 'HIDE' : 'SHOW'}
                   </Button>
@@ -126,7 +120,6 @@ const SignUp = () => {
                   aria-label="Occupation"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>
@@ -139,7 +132,6 @@ const SignUp = () => {
                   aria-label="Age"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>
@@ -152,12 +144,11 @@ const SignUp = () => {
                   aria-label="Email"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
-              <InputGroup>
+              <InputGroup mb="4">
                 <InputLeftAddon children="+91"></InputLeftAddon>
                 <Input
                   type="number"
@@ -165,7 +156,6 @@ const SignUp = () => {
                   aria-label="Phone Number"
                   border="1px"
                   borderColor="black"
-                  fontFamily="sans-serif"
                 />
               </InputGroup>
             </FormControl>

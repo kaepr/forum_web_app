@@ -39,7 +39,7 @@ const Login = () => {
       <Box
         w="40%"
         minH="80%"
-        bg="gray.200"
+        bg="white"
         boxShadow="lg"
         rounded="lg"
         p="6"
