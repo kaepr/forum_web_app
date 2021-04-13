@@ -1,9 +1,9 @@
 // const db = require('../config/db');
 // import db from '../config/db';
 import jwt from 'jsonwebtoken';
-import { dbConfig, dbMysql } from '../config/db';
+import { dbConfig } from '../config/db';
 import bcrypt from 'bcrypt';
-import { stringify, v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import mysql from 'mysql2/promise';
 
 import { JWT_SECRET } from '../config/secrets';
@@ -135,6 +135,8 @@ export const login = async (req, res) => {
       });
     }
 
+    console.log('password correct = ', passwordCorrect);
+    console.log('userrr : ', existingUser);
     const token = jwt.sign(
       {
         userId: existingUser.UUID
@@ -142,34 +144,14 @@ export const login = async (req, res) => {
       JWT_SECRET
     );
 
-    return res.cookie(
-      'token',
-      token,
-      {
+    return res
+      .status(200)
+      .cookie('token', token, {
         httpOnly: true
-      }.json({
-        msg: 'Successfully Logged In'
       })
-    );
-
-    if (existingUser) {
-      bcrypt.compare(password, existingUser.password, (err, response) => {
-        if (response) {
-          const token = jwt.sign({ userId: existingUser.UUID }, JWT_SECRET);
-          return res
-            .cookie('token', token, {
-              httpOnly: true
-            })
-            .json({
-              msg: 'Successfully Logged In'
-            });
-        } else {
-          return res.status(400).json({
-            msg: 'Invalid Credentials'
-          });
-        }
+      .json({
+        msg: 'Successfully Logged In'
       });
-    }
   } catch (err) {
     console.log(err);
     return res.status(500).json({
@@ -180,6 +162,12 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
+    return res
+      .cookie('token', '', {
+        httpOnly: true,
+        expires: new Date(0)
+      })
+      .send();
   } catch (err) {
     return res.status(400).json({
       msg: 'Could not log out properly'

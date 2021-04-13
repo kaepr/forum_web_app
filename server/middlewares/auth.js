@@ -16,7 +16,6 @@ export const isLogged = (req, res, next) => {
     return next();
   } catch (err) {
     console.error(err);
-
     return res.status(401).json({
       errorMessage: 'Unauthorized'
     });
