@@ -80,7 +80,7 @@ const SignUp = () => {
           </InputGroup>
         </FormControl>
         
-        <Button type="submit" bgColor="red.400" variant="solid" rightIcon={<ArrowForwardIcon color="black.500"/>} fontFamily="cursive">SIGN UP</Button>
+        <Button type="submit" bgColor="green.400" variant="solid" rightIcon={<ArrowForwardIcon color="black.500"/>} fontFamily="cursive">SIGN UP</Button>
       </Stack>
     </form>
   </Box>

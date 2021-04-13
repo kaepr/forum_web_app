@@ -52,7 +52,7 @@ const Login = () => {
        
 
         
-        <Button type="submit" bgColor="green.400" variant="solid" rightIcon={<ArrowForwardIcon color="black.500"/>} fontFamily="sans serif">LOG IN</Button>
+        <Button type="submit" bgColor="green.400" variant="solid" rightIcon={<ArrowForwardIcon color="black.500"/>} fontFamily="cursive">LOG IN</Button>
       </Stack>
     </form>
   </Box>
