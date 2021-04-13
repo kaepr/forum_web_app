@@ -24,7 +24,6 @@ const PostPage = () => {
           Post Title
         </Link>{' '}
       </RouterLink>
-      
                 <Box d="flex" alignItems="center">
                   <CalendarIcon/>
                   <Text pl="1" pr="3">20th July 2020</Text>
