@@ -28,7 +28,7 @@ const Login = () => {
         </Text>
       </Box>
 
-  <Box w="50%" minH="80%" bg="gray.200" boxShadow="lg" rounded="lg" p="6" mb="4" mt="4">
+  <Box w="40%" minH="80%" bg="gray.200" boxShadow="lg" rounded="lg" p="6" mb="4" mt="4">
     <form action = 'submit'>
       <Stack spacing={3} >
         <FormControl isRequired>

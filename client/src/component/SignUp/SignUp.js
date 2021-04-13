@@ -18,7 +18,7 @@ const SignUp = () => {
         </Text>
       </Box>
 
-  <Box w="70%" minH="80%" bg="gray.200" boxShadow="lg" rounded="lg" p="6" mb="4">
+  <Box w="50%" minH="80%" bg="gray.200" boxShadow="lg" rounded="lg" p="6" mb="4">
     <form action = 'submit'>
       <Stack spacing={3} >
         <FormControl isRequired>
@@ -37,6 +37,17 @@ const SignUp = () => {
           <InputGroup>
                     <InputLeftElement children={<LockIcon/>}/>
                     <Input pr="4.5rem" type={show ? "text" : "password"} placeholder="Password"  border="1px" borderColor="black" fontFamily="sans-serif"/>
+                    <InputRightElement width="4.5rem">
+                      <Button h="1.75rem" size="xs" onClick={handleClick} variant="ghost" fontFamily="cursive">
+                        {show ? "HIDE" : "SHOW"}
+                      </Button>
+                    </InputRightElement>
+          </InputGroup>
+        </FormControl>
+        <FormControl isRequired>
+          <InputGroup>
+                    <InputLeftElement children={<LockIcon/>}/>
+                    <Input pr="4.5rem" type={show ? "text" : "password"} placeholder="Confirm Password"  border="1px" borderColor="black" fontFamily="sans-serif"/>
                     <InputRightElement width="4.5rem">
                       <Button h="1.75rem" size="xs" onClick={handleClick} variant="ghost" fontFamily="cursive">
                         {show ? "HIDE" : "SHOW"}
