@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Stack,
@@ -18,7 +18,7 @@ import {
   LockIcon
 } from '@chakra-ui/icons';
 const SignUp = () => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
     <Box rounded="lg" p="5" mb="3">

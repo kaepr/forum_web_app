@@ -1,8 +1,29 @@
 import React from 'react';
 import { Box, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { loggedIn } from '../../store';
+import { useAtom } from 'jotai';
+import axios from 'axios';
 
 export default function Header() {
+  const [logged, setLogged] = useAtom(loggedIn);
+
+  const logout = () => {
+    axios
+      .get('/api/auth/logout', {
+        withCredentials: true
+      })
+      .then((res) => {
+        setLogged(false);
+        window.location.href = '/';
+      });
+  };
+
+  /**  
+  TODO 
+  set private, public links in the navbar using logged variable
+  */
+
   return (
     <Box>
       <RouterLink to="/">
@@ -34,7 +55,7 @@ export default function Header() {
           Signup
         </Link>
       </RouterLink>
-    |
+      |
       <RouterLink to="/profile">
         <Link fontSize="18px" textTransform="uppercase" pl="8">
           Profile

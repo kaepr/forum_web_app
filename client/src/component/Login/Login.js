@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Stack,
@@ -13,8 +13,20 @@ import {
 import { ArrowForwardIcon, InfoIcon, LockIcon } from '@chakra-ui/icons';
 
 const Login = () => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('data = ', {
+      password,
+      email
+    });
+  };
+
   return (
     <Box rounded="lg" p="5" mb="3">
       <Box mb="1">
@@ -46,17 +58,18 @@ const Login = () => {
         mb="4"
         mt="4"
       >
-        <form action="submit">
+        <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <FormControl isRequired>
               <InputGroup>
                 <InputLeftElement children={<InfoIcon />} />
                 <Input
-                  type="info"
-                  placeholder="User Name"
-                  aria-label="User Name"
+                  type="email"
+                  placeholder="Email"
+                  aria-label="Email"
                   border="1px"
                   borderColor="black"
+                  onChange={(e) => setEmail(e.currentTarget.value)}
                 />
               </InputGroup>
             </FormControl>
@@ -70,6 +83,7 @@ const Login = () => {
                   placeholder="Password"
                   border="1px"
                   borderColor="black"
+                  onChange={(e) => setPassword(e.currentTarget.value)}
                 />
                 <InputRightElement width="4.5rem">
                   <Button
