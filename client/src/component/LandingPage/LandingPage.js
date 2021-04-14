@@ -65,7 +65,7 @@ export default function LandingPage() {
               </Box>
             </Box>
 
-            <Box>
+            <Box mt="2">
               <div>Copyright &copy; 2021. All rights reserved.</div>
             </Box>
           </Flex>

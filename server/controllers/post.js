@@ -8,7 +8,7 @@ export const getAllPosts = async (req, res) => {
       'Select Title, Description, SID, posts.UUID, likes, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID';
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(getPostsQuery);
-    console.log('res : ', postRows);
+    // console.log('res : ', postRows);
     return res.status(200).json({
       data: postRows
     });

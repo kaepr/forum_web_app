@@ -2,15 +2,9 @@ import React, { useState } from 'react';
 import { Text, Box, Button, Flex, Textarea } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowBackIcon, DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
-import { AiOutlineLike, AiOutlineUser,AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineLike, AiOutlineUser, AiOutlineDislike } from 'react-icons/ai';
 import PostReply from './PostReply';
 
-/**
- *
- * Post Replies Schema
- * UUID, UserID, SID, Description, Title, Likes
- *
- */
 export default function IndividualPost() {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,7 +113,15 @@ export default function IndividualPost() {
         </Flex>
       </Box>
 
-      <Box bg="white" boxShadow="lg" borderRadius="lg" ml="2" mr="2" pb="5" mt="5" >
+      <Box
+        bg="white"
+        boxShadow="lg"
+        borderRadius="lg"
+        ml="2"
+        mr="2"
+        pb="5"
+        mt="5"
+      >
         <form onSubmit={handleSubmit}>
           <Box>
             <Textarea
@@ -157,8 +159,7 @@ export default function IndividualPost() {
         Replies &mdash; (Number of Replies)
       </Text>
 
-      <PostReply/>
-
+      <PostReply />
     </Box>
   );
 }

@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/icons';
 
 import { useAtom } from 'jotai';
-import { loggedIn, userData } from '../../store';
+import { loggedIn } from '../../store';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
@@ -48,7 +48,7 @@ const SignUp = () => {
     return (
       <Redirect
         to={{
-          pathname: '/profile'
+          pathname: '/'
         }}
       />
     );
