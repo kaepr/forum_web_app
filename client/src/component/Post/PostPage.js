@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Text, Link, Flex } from '@chakra-ui/react';
-import { AddIcon, CalendarIcon, ChatIcon, InfoIcon } from '@chakra-ui/icons';
+import { AddIcon, CalendarIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 import { AiOutlineLike, AiOutlineDislike, AiOutlineUser } from 'react-icons/ai';
 
@@ -60,30 +60,32 @@ const PostPage = () => {
                 <Button
                   bg="transparent"
                   _hover={{ bgColor: 'transparent' }}
-                  size="xs"
+                  size="10px"
                 >
                   <AiOutlineLike size={20} />
                 </Button>
-                <Text pt="0.4" pr="3" fontSize="17px">
+                <Text pt="1" pr="3" pl="1" fontSize="17px">
                   20
                 </Text>
 
                 <Button
                   bg="transparent"
                   _hover={{ bgColor: 'transparent' }}
-                  size="xs"
+                  size="10px"
                   pt="1"
                 >
                   <AiOutlineDislike size={20} />
                 </Button>
-                <Text pt="0.4" fontSize="17px">
+                <Text pt="1" pl="1" fontSize="17px">
                   10
                 </Text>
               </Flex>
             </Flex>
             <Flex>
-              <AiOutlineUser size={19} />
-              <Text pl="1" pr="2" fontWeight="semibold">
+              <Box pt="1">
+                <AiOutlineUser size={19} />
+              </Box>
+              <Text pl="1" pr="2" pt="0.8" fontWeight="semibold">
                 Siddhant Mittal
               </Text>
             </Flex>

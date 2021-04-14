@@ -33,10 +33,9 @@ export default function LandingPage() {
             <Text
               fontSize="32px"
               fontWeight="bold"
-              textTransform="uppercase"
-              letterSpacing="1px"
+              letterSpacing="5px"
             >
-              Forum App
+              DisQus-Hub
             </Text>
           </Box>
           <Flex

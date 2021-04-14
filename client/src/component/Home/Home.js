@@ -1,5 +1,3 @@
-import CreatePost from "../Post/CreatePost"
-
 const Home = () => {
   return <div>home page</div>;
 };

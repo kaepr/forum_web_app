@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, Box, Button, Flex, Textarea } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowBackIcon, DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
-import { AiOutlineLike, AiOutlineUser,AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineLike, AiOutlineUser, AiOutlineDislike } from 'react-icons/ai';
 import PostReply from './PostReply';
 
 /**
@@ -17,15 +17,6 @@ export default function IndividualPost() {
   };
   return (
     <Box width="70%" mb="8">
-      <Text
-        textTransform="uppercase"
-        fontSize="22px"
-        fontWeight="semibold"
-        mb="4"
-      >
-        Post Topic
-      </Text>
-
       <Box align="left" ml="2" mb="4">
         <RouterLink to="/posts">
           <Button
@@ -51,16 +42,21 @@ export default function IndividualPost() {
         pb="2"
       >
         <Flex p="3" pb="2" alignItems="center" justifyContent="space-between">
-          <Text fontSize="18px" fontWeight="semibold">
-            Thread: Post Topic
-          </Text>
+          <Flex>
+            <Text fontSize="18px" fontWeight="semibold">
+              Thread: Post Topic
+            </Text>
+          </Flex>
+          <Flex alignItems="center">
+            <CalendarIcon />
+          <Text pl="1" pr="2">14/4/21</Text>
           <Button
-            bg="transparent"
-            _hover={{ bgColor: 'transparent' }}
-            size="md"
-          >
-            <DeleteIcon color="red.600" size={20} />
-          </Button>
+              bg="transparent"
+              size="10px"
+            >
+              <DeleteIcon color="red.600" size={20} />
+            </Button>
+          </Flex>
         </Flex>
         <Box pl="3" pb="3" pr="4" align="justify">
           This is where we talk about every issue you can think of no matter how
@@ -86,27 +82,28 @@ export default function IndividualPost() {
           of no matter how small or complex.
         </Box>
         <Flex alignItems="center" justifyContent="space-between">
-          <Flex pb="2" pl="1">
+          <Flex pb="2" pl="3">
             <Button
               bg="transparent"
               _hover={{ bgColor: 'transparent' }}
-              size="xs"
+              size="10px"
+              
             >
               <AiOutlineLike size={20} />
             </Button>
-            <Text pt="0.4" pr="3" fontSize="17px">
+            <Text pt="0.5" pr="3" pl="1" fontSize="17px">
               20
             </Text>
 
             <Button
               bg="transparent"
               _hover={{ bgColor: 'transparent' }}
-              size="xs"
+              size="10px"
               pt="1"
             >
               <AiOutlineDislike size={20} />
             </Button>
-            <Text pt="0.4" fontSize="17px">
+            <Text pt="0.5" pl="1" fontSize="17px">
               10
             </Text>
           </Flex>
@@ -119,7 +116,15 @@ export default function IndividualPost() {
         </Flex>
       </Box>
 
-      <Box bg="white" boxShadow="lg" borderRadius="lg" ml="2" mr="2" pb="5" mt="5" >
+      <Box
+        bg="white"
+        boxShadow="lg"
+        borderRadius="lg"
+        ml="2"
+        mr="2"
+        pb="5"
+        mt="5"
+      >
         <form onSubmit={handleSubmit}>
           <Box>
             <Textarea
@@ -157,8 +162,7 @@ export default function IndividualPost() {
         Replies &mdash; (Number of Replies)
       </Text>
 
-      <PostReply/>
-
+      <PostReply />
     </Box>
   );
 }

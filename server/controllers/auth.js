@@ -49,7 +49,7 @@ export const register = async (req, res) => {
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-    console.log(Date.now());
+    //console.log(Date.now());
     const time = Date.now();
     const today = new Date(time);
     const dateString = today.toLocaleDateString();
