@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const getAllPosts = async (req, res) => {
   try {
     const getPostsQuery =
-      'Select Title, Description, SID, posts.UUID, likes, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID ORDER BY posts.Time DESC';
+      'Select Title, Description, SID, posts.UUID, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID ORDER BY posts.Time DESC';
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(getPostsQuery);
     // console.log('res : ', postRows);
@@ -25,7 +25,7 @@ export const getAllReplies = async (req, res) => {
     const { SID } = req.body;
     // console.log('req body : ', req.body);
     const getReplyQuery =
-      'select ReplyID, user_id, postreplies.SID, postreplies.Description, postreplies.Likes, postreplies.CreatedAt, postreplies.Time, User_Name from postreplies, userdata where postreplies.SID = ? and userdata.UUID = postreplies.user_id ORDER BY postreplies.Time DESC';
+      'select ReplyID, user_id, postreplies.SID, postreplies.Description, postreplies.CreatedAt, postreplies.Time, User_Name from postreplies, userdata where postreplies.SID = ? and userdata.UUID = postreplies.user_id ORDER BY postreplies.Time DESC';
 
     const connection = await mysql.createConnection(dbConfig);
     const [replyRows] = await connection.execute(getReplyQuery, [SID]);
@@ -59,7 +59,7 @@ export const createPost = async (req, res) => {
     const dateString = today.toLocaleDateString();
 
     const createPostQuery =
-      'insert into posts (UUID, Title, SID, Description, likes, CreatedAt, Time) values (?,?,?,?,?,?)';
+      'insert into posts (UUID, Title, SID, Description, CreatedAt, Time) values (?,?,?,?,?)';
 
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(createPostQuery, [
@@ -67,7 +67,6 @@ export const createPost = async (req, res) => {
       title,
       post_id,
       description,
-      0,
       dateString,
       time
     ]);
@@ -99,7 +98,7 @@ export const createReply = async (req, res) => {
     // console.log('date string : ', dateString);
 
     const createReplyQuery =
-      'insert into postreplies (ReplyID, user_id, SID, Description, Likes, CreatedAt, Time) values (?,?,?,?,?,?,?)';
+      'insert into postreplies (ReplyID, user_id, SID, Description, CreatedAt, Time) values (?,?,?,?,?,?)';
 
     const connection = await mysql.createConnection(dbConfig);
     const [replyRows] = await connection.execute(createReplyQuery, [
@@ -107,7 +106,6 @@ export const createReply = async (req, res) => {
       user_uuid,
       SID,
       content,
-      0,
       dateString,
       time
     ]);
