@@ -1,19 +1,102 @@
 import React, { useState } from 'react';
-import { Text, Box, Button, Flex, Textarea } from '@chakra-ui/react';
+import {
+  Text,
+  Box,
+  Button,
+  Flex,
+  Textarea,
+  useToast,
+  Center,
+  Spinner
+} from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowBackIcon, DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
-import { AiOutlineLike, AiOutlineUser, AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import PostReply from './PostReply';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import { useAtom } from 'jotai';
+import { postReplies } from '../../store';
 
-/**
- *
- * Post Replies Schema
- * UUID, UserID, SID, Description, Title, Likes
- *
- */
-export default function IndividualPost() {
-  const handleSubmit = (e) => {
+export default function IndividualPost(props) {
+  const postData = props.location.state;
+
+  console.log('post data sid : ', postData.SID);
+
+  const [allReplies, setAllReplies] = useAtom(postReplies);
+
+  const [loading, setLoading] = useState(false);
+  const [replies, setReplies] = useState([]);
+  const [replyContent, setReplyContent] = useState('');
+
+  const toast = useToast();
+
+  // Handle Getting all replies
+  const [loading2, setLoading2] = useState(false);
+  const getReplies = async () => {
+    // setReplyLoading(true);
+    setLoading2(true);
+    const res = await axios.post(
+      '/api/post/getallreplies',
+      {
+        SID: postData.SID
+      },
+      {
+        withCredentials: true
+      }
+    );
+    console.log('res : ', res.data);
+    // console.log(userData);
+    setReplies(res.data.data);
+    setAllReplies(res.data.data);
+    // setReplyLoading(false);
+    setLoading2(false);
+    return res.data.data;
+  };
+
+  const { data, isLoading } = useQuery('repliesAll', getReplies);
+
+  // console.log('data = ', data);
+
+  // Handle Submit
+  const handleChange = (value) => {
+    setReplyContent(value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
+
+      await axios.post(
+        '/api/post/createreply',
+        {
+          content: replyContent,
+          SID: postData.SID
+        },
+        {
+          withCredentials: true
+        }
+      );
+
+      toast({
+        title: 'Reply Created',
+        status: 'success',
+        isClosable: true
+      });
+
+      setReplyContent('');
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+      const errorMsg = 'Reply Not Created';
+      toast({
+        title: errorMsg,
+        status: 'warning',
+        isClosable: true
+      });
+    }
   };
   return (
     <Box width="70%" mb="8">
@@ -42,77 +125,35 @@ export default function IndividualPost() {
         pb="2"
       >
         <Flex p="3" pb="2" alignItems="center" justifyContent="space-between">
-          <Flex>
-            <Text fontSize="18px" fontWeight="semibold">
-              Thread: Post Topic
-            </Text>
-          </Flex>
+          <Text fontSize="18px" fontWeight="semibold">
+            {postData.Title}
+          </Text>
           <Flex alignItems="center">
             <CalendarIcon />
-          <Text pl="1" pr="2">14/4/21</Text>
-          <Button
-              bg="transparent"
-              size="10px"
-            >
-              <DeleteIcon color="red.600" size={20} />
-            </Button>
+            <Text pl="1">{postData.CreatedAt}</Text>
           </Flex>
         </Flex>
         <Box pl="3" pb="3" pr="4" align="justify">
-          This is where we talk about every issue you can think of no matter how
-          small or complex.This is where we talk about every issue you can think
-          of no matter how small or complex.This is where we talk about every
-          issue you can think of no matter how small or complex.This is where we
-          talk about every issue you can think of no matter how small or
-          complex. This is where we talk about every issue you can think of no
-          matter how small or complex.This is where we talk about every issue
-          you can think of no matter how small or complex.This is where we talk
-          about every issue you can think of no matter how small or complex.This
-          is where we talk about every issue you can think of no matter how
-          small or complex. This is where we talk about every issue you can
-          think of no matter how small or complex.This is where we talk about
-          every issue you can think of no matter how small or complex.This is
-          where we talk about every issue you can think of no matter how small
-          or complex.This is where we talk about every issue you can think of no
-          matter how small or complex. This is where we talk about every issue
-          you can think of no matter how small or complex.This is where we talk
-          about every issue you can think of no matter how small or complex.This
-          is where we talk about every issue you can think of no matter how
-          small or complex.This is where we talk about every issue you can think
-          of no matter how small or complex.
+          {postData.Description}
         </Box>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Flex pb="2" pl="3">
-            <Button
-              bg="transparent"
-              _hover={{ bgColor: 'transparent' }}
-              size="10px"
-              
-            >
-              <AiOutlineLike size={20} />
-            </Button>
-            <Text pt="0.5" pr="3" pl="1" fontSize="17px">
-              20
-            </Text>
-
-            <Button
-              bg="transparent"
-              _hover={{ bgColor: 'transparent' }}
-              size="10px"
-              pt="1"
-            >
-              <AiOutlineDislike size={20} />
-            </Button>
-            <Text pt="0.5" pl="1" fontSize="17px">
-              10
-            </Text>
-          </Flex>
-          <Flex alignItems="center" pr="3" pb="2">
-            <AiOutlineUser size={20} />
-            <Text pl="1" pr="2">
-              Siddhant Mittal
-            </Text>
-          </Flex>
+        <Flex
+          alignItems="center"
+          justifyContent="flex-end"
+          pr="3"
+          pb="2"
+          pt="2"
+        >
+          <AiOutlineUser size={20} />
+          <Text pl="1" pr="4">
+            {postData.User_Name}
+          </Text>
+          <Button
+            bg="transparent"
+            _hover={{ bgColor: 'transparent' }}
+            size="10px"
+          >
+            <DeleteIcon color="red.600" size={18} />
+          </Button>
         </Flex>
       </Box>
 
@@ -134,6 +175,8 @@ export default function IndividualPost() {
               width="90%"
               required="required"
               placeholder="Post Reply"
+              onChange={(e) => handleChange(e.currentTarget.value)}
+              // value={replyContent}
             ></Textarea>
           </Box>
           <Button
@@ -151,6 +194,18 @@ export default function IndividualPost() {
         </form>
       </Box>
 
+      {(isLoading || loading2) && (
+        <Center mt="2">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </Center>
+      )}
+
       <Text
         fontSize="19px"
         fontWeight="semibold"
@@ -159,10 +214,15 @@ export default function IndividualPost() {
         align="left"
         ml="2"
       >
-        Replies &mdash; (Number of Replies)
+        Replies &mdash; {allReplies.length}
       </Text>
-
-      <PostReply />
+      {allReplies.map((data, index) => {
+        return (
+          <div key={index}>
+            <PostReply props={data} />
+          </div>
+        );
+      })}
     </Box>
   );
 }

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, Box, Button, Flex } from '@chakra-ui/react';
 import { DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
-import { AiOutlineLike, AiOutlineUser, AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 
-const PostReply = () => {
+const PostReply = (props) => {
+  // console.log('in props : ', props.props);
+  const replyData = props.props;
   return (
     <Box
       align="left"
@@ -19,43 +21,18 @@ const PostReply = () => {
         <Flex alignItems="center" align="left" pl="3">
           <AiOutlineUser size={18} />
           <Text pl="1" pr="2" fontWeight="semibold">
-            Siddhant Mittal
+            {replyData.User_Name}
           </Text>
         </Flex>
         <Flex alignItems="center" pr="4">
           <CalendarIcon />
-          <Text pl="1">14/4/21</Text>
+          <Text pl="1">{replyData.CreatedAt}</Text>
         </Flex>
       </Flex>
       <Box pl="3" pb="2" pr="4" align="justify">
-        hihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihi
+        {replyData.Description}
       </Box>
-      <Flex alignItems="center" justifyContent="space-between">
-        <Flex pb="2" pl="3">
-          <Button
-            bg="transparent"
-            _hover={{ bgColor: 'transparent' }}
-            size="xxs"
-          >
-            <AiOutlineLike size={18} />
-          </Button>
-          <Text pt="0.5" pr="3" fontSize="16px">
-            20
-          </Text>
-
-          <Button
-            bg="transparent"
-            _hover={{ bgColor: 'transparent' }}
-            size="xxs"
-            pt="1"
-          >
-            <AiOutlineDislike size={18} />
-          </Button>
-          <Text pt="0.4" fontSize="16px">
-            10
-          </Text>
-        </Flex>
-        <Flex alignItems="center" pr="3" pb="2">
+        <Flex alignItems="center" pr="3" pb="2" pt="2" justifyContent="flex-end">
           <Button
             bg="transparent"
             _hover={{ bgColor: 'transparent' }}
@@ -64,7 +41,6 @@ const PostReply = () => {
             <DeleteIcon color="red.600" size={22} />
           </Button>
         </Flex>
-      </Flex>
     </Box>
   );
 };

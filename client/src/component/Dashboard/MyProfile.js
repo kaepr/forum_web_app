@@ -1,19 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Divider,
   Text,
-  useToast,
   Spinner,
-  Center
+  Center,
+  useToast
 } from '@chakra-ui/react';
+import { useQuery } from 'react-query';
+import { useAtom } from 'jotai';
 import axios from 'axios';
 
+import { uData } from '../../store';
+
 export default function MyProfile() {
-  const [loading, setLoading] = useState(false);
+  // const [uDataBack, setSetUserDataBackend] = useAtom(uData);
   const [userData, setUserData] = useState({});
+  // const getUser = async () => {
+  //   const res = await axios.get('/api/user/getinfo', {
+  //     withCredentials: true
+  //   });
+
+  //   setSetUserDataBackend(res.data.data);
+  //   return res.data.data;
+  // };
 
   const toast = useToast();
+
+  // const { data, isLoading } = useQuery('getProfileData', getUser);
+  // console.log(data);
+  // useEffect(() => {}, [isLoading]);
+
+  const [loading, setLoading] = useState(false);
+
+  // console.log('happens');
   useEffect(() => {
     try {
       const getUser = async () => {
@@ -22,11 +42,10 @@ export default function MyProfile() {
           withCredentials: true
         });
         // console.log('res : ', res);
-        console.log(getUser.phoneNumber);
+        // console.log(userData);
         setUserData(res.data.data);
         setLoading(false);
       };
-
       getUser();
     } catch (err) {
       console.log('err =  ', err);
@@ -37,7 +56,6 @@ export default function MyProfile() {
       });
       setLoading(false);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -134,7 +152,7 @@ export default function MyProfile() {
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Posts</Text>
-            <Text>0</Text>
+            <Text>{userData.postCount}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="1" pt="3" d="flex" justifyContent="space-between">

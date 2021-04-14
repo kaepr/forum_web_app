@@ -54,6 +54,7 @@ export default function LandingPage() {
                   <PrivateRoute path="/profile" component={MyProfile} />
                   <PrivateRoute
                     path="/individualPost"
+                    // render={(props) => <IndividualPost {...props} />}
                     component={IndividualPost}
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />
@@ -64,7 +65,7 @@ export default function LandingPage() {
               </Box>
             </Box>
 
-            <Box>
+            <Box mt="2">
               <div>Copyright &copy; 2021. All rights reserved.</div>
             </Box>
           </Flex>
