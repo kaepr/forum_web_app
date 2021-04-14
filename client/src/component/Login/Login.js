@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Stack,
@@ -8,23 +8,72 @@ import {
   Text,
   InputLeftElement,
   InputRightElement,
-  InputGroup
+  InputGroup,
+  Spinner,
+  Center,
+  useToast
 } from '@chakra-ui/react';
 import { ArrowForwardIcon, InfoIcon, LockIcon } from '@chakra-ui/icons';
 
-const Login = () => {
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+import { useAtom } from 'jotai';
+import { loggedIn, userData } from '../../store';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
+const Login = () => {
+  const [loggedInCheck, setLogged] = useAtom(loggedIn);
+  const [userDataApp, setUserData] = useAtom(userData);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
+
+  if (loggedInCheck) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/profile'
+        }}
+      />
+    );
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('data = ', {
-      password,
-      email
-    });
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        '/api/auth/login',
+        { email, password },
+        {
+          withCredentials: true
+        }
+      );
+
+      toast({
+        title: res.data.msg,
+        status: 'success',
+        isClosable: true
+      });
+
+      setLogged(true);
+
+      setLoading(false);
+    } catch (err) {
+      const errorMsg = err.response.data.msg;
+      toast({
+        title: errorMsg,
+        status: 'warning',
+        isClosable: true
+      });
+      console.log('Successfully Failed');
+      setLoading(false);
+    }
   };
 
   return (
@@ -97,6 +146,18 @@ const Login = () => {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+
+            {loading && (
+              <Center>
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
+              </Center>
+            )}
 
             <Button
               type="submit"

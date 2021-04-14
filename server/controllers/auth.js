@@ -1,5 +1,3 @@
-// const db = require('../config/db');
-// import db from '../config/db';
 import jwt from 'jsonwebtoken';
 import { dbConfig } from '../config/db';
 import bcrypt from 'bcrypt';
@@ -10,8 +8,6 @@ import { JWT_SECRET } from '../config/secrets';
 
 export const register = async (req, res) => {
   try {
-    console.log(JWT_SECRET);
-    console.log('Req body : ', req.body);
     const {
       email,
       password,
@@ -68,10 +64,6 @@ export const register = async (req, res) => {
       dateString
     ]);
 
-    console.log('password hash : ', passwordHash);
-    console.log('length hash : ', passwordHash.length);
-    console.log('user created : ', userCreated);
-
     const token = jwt.sign(
       {
         userId: user_id
@@ -97,8 +89,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    console.log(JWT_SECRET);
-    console.log('Req body : ', req.body);
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
@@ -118,12 +108,6 @@ export const login = async (req, res) => {
 
     const existingUser = emailRes[0];
 
-    console.log('user from email = ', existingUser);
-
-    // User Exists, check for password
-    console.log('password = ', password);
-    console.log('existing hash = ', existingUser.password);
-
     const passwordCorrect = await bcrypt.compare(
       password,
       existingUser.password
@@ -135,8 +119,6 @@ export const login = async (req, res) => {
       });
     }
 
-    console.log('password correct = ', passwordCorrect);
-    console.log('userrr : ', existingUser);
     const token = jwt.sign(
       {
         userId: existingUser.UUID
@@ -177,7 +159,6 @@ export const logout = async (req, res) => {
 
 export const isLoggedIn = async (req, res) => {
   try {
-    // console.log('here');
     const token = req.cookies.token;
     if (!token || token === undefined) return res.json(false);
     jwt.verify(token, JWT_SECRET);

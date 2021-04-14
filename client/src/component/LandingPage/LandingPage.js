@@ -8,6 +8,7 @@ import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
 import MyProfile from '../Dashboard/MyProfile';
 import IndividualPost from '../Post/IndividualPost';
+import { PrivateRoute } from '../../component/PrivateRoute/PrivateRoute';
 
 export default function LandingPage() {
   return (
@@ -47,12 +48,14 @@ export default function LandingPage() {
               <Box pt="8">
                 <Switch>
                   <Route path="/" component={Home} exact />
-                  <Route path="/posts" component={PostPage} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={SignUp} />
-                  <Route path="/profile" component={MyProfile} />
-                  <Route path="/indiPost" component={IndividualPost} />
-                  <Route path="/users">Users</Route>
+                  <PrivateRoute path="/posts" component={PostPage} />
+                  <PrivateRoute path="/profile" component={MyProfile} />
+                  <PrivateRoute path="/indipost" component={IndividualPost} />
+                  {/* <Route path="/profile" component={MyProfile} /> */}
+                  {/* <Route path="/indiPost" component={IndividualPost} /> */}
+                  {/* <Route path="/users">Users</Route> */}
                 </Switch>
               </Box>
             </Box>
