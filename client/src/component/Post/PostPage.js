@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Button, Text, Link } from '@chakra-ui/react';
-import { AddIcon, CalendarIcon, ChatIcon, InfoIcon } from '@chakra-ui/icons';
+import { Box, Button, Text, Link, Flex } from '@chakra-ui/react';
+import { AddIcon, ChatIcon, InfoIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineLike } from 'react-icons/ai';
 
 const PostPage = () => {
   return (
@@ -33,31 +33,20 @@ const PostPage = () => {
       </Box>
       <RouterLink to="/individualPost">
         <Box mt="5" bg="white" boxShadow="lg" borderRadius="lg">
-          <Box
-            pt="3"
-            d="flex"
-            justifyContent="space-between"
-            w="95%"
-            h="80%"
-            align
-          >
+          <Flex pt="3" justifyContent="space-between" ml="3" mr="3">
             <Text fontWeight="semibold">Post Title</Text>
 
             <Box d="flex" alignItems="center">
-              <CalendarIcon />
-              <Text pl="1" pr="3">
-                20th July 2020
-              </Text>
               <ChatIcon />
               <RouterLink to="/individualPost">
                 <Link pl="1" pr="3">
                   Post Reply
                 </Link>{' '}
               </RouterLink>
-              <AiFillHeart />
-              <Text pl="1">Likes</Text>
+              <AiOutlineLike size={19} />
+              <Text pl="1">20</Text>
             </Box>
-          </Box>
+          </Flex>
           <Box alignItems="left" p="3" h="80%" minW="80%">
             <Text align="justify">
               DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription

@@ -15,7 +15,7 @@ const CreatePost = () => {
   return (
     <Box bg="white" boxShadow="lg" borderRadius="lg" width="70%">
       <Stack align="center">
-        <Box w="80%" pt="6">
+        <Box w="90%" pt="6">
           <Box mb="2">
             <Text size="32px" align="left" w="70%" fontWeight="semibold">
               Post Title
@@ -34,7 +34,7 @@ const CreatePost = () => {
             </InputGroup>
           </FormControl>
         </Box>
-        <Box w="80%">
+        <Box w="90%">
           <Box mb="2">
             <Text size="32px" align="left" w="70%" mt="6" fontWeight="semibold">
               Post Description
@@ -56,7 +56,7 @@ const CreatePost = () => {
         alignItems="left"
         mt="5"
         display="flex"
-        w="55%"
+        w="65%"
         justifyContent="space-between"
         align="center"
         pb="6"

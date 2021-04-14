@@ -54,7 +54,6 @@ export default function LandingPage() {
                   <Route path="/profile" component={MyProfile} />
                   <Route path="/individualPost" component={IndividualPost} />
                   <Route path="/createPost" component={CreatePost}/>
-                  <Route path="/users">Users</Route>
                 </Switch>
               </Box>
             </Box>

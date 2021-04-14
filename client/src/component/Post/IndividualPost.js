@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { Text, Box, Button, Flex, Divider, Textarea } from '@chakra-ui/react';
+import { Text, Box, Button, Flex,Textarea } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import {
-  ArrowBackIcon,
-  CalendarIcon,
-  ChatIcon,
-  InfoIcon
-} from '@chakra-ui/icons';
-import PostReply from '../Post Reply/PostReply';
+import { ArrowBackIcon, InfoIcon } from '@chakra-ui/icons';
+import { AiOutlineLike } from 'react-icons/ai';
+
 /**
  *
  * Post Replies Schema
@@ -15,21 +11,6 @@ import PostReply from '../Post Reply/PostReply';
  *
  */
 export default function IndividualPost() {
-  const [replyInput, setReplyInput] = useState('');
-  const [reply, setReply] = useState('');
-
-  const handleChange = (e) => {
-    setReplyInput(e.currentTarget.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDedault();
-    reply(replyInput);
-    setReplyInput('');
-  };
-
-  const addReply = (userInput) => {};
-
   return (
     <Box width="70%" mb="8">
       <Text
@@ -76,18 +57,33 @@ export default function IndividualPost() {
           of no matter how small or complex.This is where we talk about every
           issue you can think of no matter how small or complex.This is where we
           talk about every issue you can think of no matter how small or
-          complex.
+          complex. This is where we talk about every issue you can think of no
+          matter how small or complex.This is where we talk about every issue
+          you can think of no matter how small or complex.This is where we talk
+          about every issue you can think of no matter how small or complex.This
+          is where we talk about every issue you can think of no matter how
+          small or complex. This is where we talk about every issue you can
+          think of no matter how small or complex.This is where we talk about
+          every issue you can think of no matter how small or complex.This is
+          where we talk about every issue you can think of no matter how small
+          or complex.This is where we talk about every issue you can think of no
+          matter how small or complex. This is where we talk about every issue
+          you can think of no matter how small or complex.This is where we talk
+          about every issue you can think of no matter how small or complex.This
+          is where we talk about every issue you can think of no matter how
+          small or complex.This is where we talk about every issue you can think
+          of no matter how small or complex.
         </Box>
-        <Flex pl="3" pb="2">
-          <Flex alignItems="center">
-            <CalendarIcon />
-            <Text ml="1" mr="6">
-              14 April, 2021
-            </Text>
+        <Flex alignItems="center" justifyContent="space-between">
+          <Flex pl="3" pb="2">
+            <AiOutlineLike size={22} />
+            <Text pl="1">20</Text>
           </Flex>
-          <Flex alignItems="center">
-            <ChatIcon />
-            <Text ml="1">Post Reply</Text>
+          <Flex alignItems="center" pr="3" pb="2">
+            <InfoIcon />
+            <Text pl="1" pr="2">
+              Siddhant Mittal
+            </Text>
           </Flex>
         </Flex>
       </Box>
@@ -103,35 +99,61 @@ export default function IndividualPost() {
         Replies &mdash; (Number of Replies)
       </Text>
 
-      <PostReply />
+      <Box
+        align="left"
+        bg="white"
+        boxShadow="lg"
+        borderRadius="lg"
+        ml="2"
+        mr="2"
+        pt="3"
+        mb="4"
+      >
+        <Box pl="3" pb="6" pr="4" align="justify">
+          hi
+        </Box>
+        <Flex alignItems="center" justifyContent="space-between">
+          <Flex pl="3" pb="2">
+            <AiOutlineLike size={17} />
+            <Text fontSize="14px" pl="1">
+              20
+            </Text>
+          </Flex>
+          <Flex alignItems="center" pr="3" pb="2">
+            <InfoIcon />
+            <Text pl="1" pr="2">
+              Siddhant Mittal
+            </Text>
+          </Flex>
+        </Flex>
+      </Box>
 
       <Box bg="white" boxShadow="lg" borderRadius="lg" ml="2" mr="2" pb="2">
-        <form>
-          <Box>
-            <Textarea
-              name="reply"
-              onChange={handleChange}
-              id="reply"
-              m="4"
-              width="90%"
-              required="required"
-              placeholder="Post Reply"
-            ></Textarea>
-          </Box>
-          <Button
-            type="submit"
-            bgColor="green.400"
-            variant="solid"
-            boxShadow="lg"
-            _hover={{ background: 'green.400' }}
-            color="gray.200"
-            fontSize="14px"
-            p="4"
-          >
-            SUBMIT
-          </Button>
-        </form>
-      </Box>
+      <form>
+        <Box>
+          <Textarea
+            name="reply"
+            id="reply"
+            m="4"
+            width="90%"
+            required="required"
+            placeholder="Post Reply"
+          ></Textarea>
+        </Box>
+        <Button
+          type="submit"
+          bgColor="green.400"
+          variant="solid"
+          boxShadow="lg"
+          _hover={{ background: 'green.400' }}
+          color="gray.200"
+          fontSize="14px"
+          p="4"
+        >
+          SUBMIT
+        </Button>
+      </form>
+    </Box>
     </Box>
   );
 }

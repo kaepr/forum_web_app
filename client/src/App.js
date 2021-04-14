@@ -30,7 +30,7 @@ export default function App() {
 
   const { data } = useQuery('checkAuth', checkLoggedIn);
 
-  console.log('logged here = ', loggedInCheck);
+  //console.log('logged here = ', loggedInCheck);
 
   return (
     <Router>
