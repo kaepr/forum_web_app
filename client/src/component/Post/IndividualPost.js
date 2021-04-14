@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Box,
@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowBackIcon, DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
-import { AiOutlineLike, AiOutlineUser, AiOutlineDislike } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import PostReply from './PostReply';
 import axios from 'axios';
 import { useQuery } from 'react-query';
@@ -100,15 +100,6 @@ export default function IndividualPost(props) {
   };
   return (
     <Box width="70%" mb="8">
-      <Text
-        textTransform="uppercase"
-        fontSize="22px"
-        fontWeight="semibold"
-        mb="4"
-      >
-        {postData.Title}
-      </Text>
-
       <Box align="left" ml="2" mb="4">
         <RouterLink to="/posts">
           <Button
@@ -137,48 +128,32 @@ export default function IndividualPost(props) {
           <Text fontSize="18px" fontWeight="semibold">
             {postData.Title}
           </Text>
-          <Button
-            bg="transparent"
-            _hover={{ bgColor: 'transparent' }}
-            size="md"
-          >
-            <DeleteIcon color="red.600" size={20} />
-          </Button>
+          <Flex alignItems="center">
+            <CalendarIcon />
+            <Text pl="1">{postData.CreatedAt}</Text>
+          </Flex>
         </Flex>
         <Box pl="3" pb="3" pr="4" align="justify">
           {postData.Description}
         </Box>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Flex pb="2" pl="1">
-            <Button
-              bg="transparent"
-              _hover={{ bgColor: 'transparent' }}
-              size="xs"
-            >
-              <AiOutlineLike size={20} />
-            </Button>
-            <Text pt="0.4" pr="3" fontSize="17px">
-              {postData.likes}
-            </Text>
-
-            <Button
-              bg="transparent"
-              _hover={{ bgColor: 'transparent' }}
-              size="xs"
-              pt="1"
-            >
-              <AiOutlineDislike size={20} />
-            </Button>
-            <Text pt="0.4" fontSize="17px">
-              {postData.likes}
-            </Text>
-          </Flex>
-          <Flex alignItems="center" pr="3" pb="2">
-            <AiOutlineUser size={20} />
-            <Text pl="1" pr="2">
-              {postData.User_Name}
-            </Text>
-          </Flex>
+        <Flex
+          alignItems="center"
+          justifyContent="flex-end"
+          pr="3"
+          pb="2"
+          pt="2"
+        >
+          <AiOutlineUser size={20} />
+          <Text pl="1" pr="4">
+            {postData.User_Name}
+          </Text>
+          <Button
+            bg="transparent"
+            _hover={{ bgColor: 'transparent' }}
+            size="10px"
+          >
+            <DeleteIcon color="red.600" size={18} />
+          </Button>
         </Flex>
       </Box>
 
