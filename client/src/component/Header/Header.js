@@ -99,7 +99,7 @@ const LoggedInRoutes = () => {
       </RouterLink>
       |
       <RouterLink to="/profile">
-        <Link fontSize="18px" textTransform="uppercase" pl="8">
+        <Link fontSize="18px" textTransform="uppercase" pl="8" pr="8">
           Profile{' '}
         </Link>
       </RouterLink>

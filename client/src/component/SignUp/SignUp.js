@@ -129,7 +129,7 @@ const SignUp = () => {
       <Box
         w="50%"
         minH="80%"
-        bg="gray.200"
+        bg="white"
         boxShadow="lg"
         rounded="lg"
         p="6"
@@ -183,7 +183,6 @@ const SignUp = () => {
                     size="xs"
                     onClick={handleClick}
                     variant="ghost"
-                    fontFamily="cursive"
                   >
                     {show ? 'HIDE' : 'SHOW'}
                   </Button>
@@ -208,7 +207,6 @@ const SignUp = () => {
                     size="xs"
                     onClick={handleClick}
                     variant="ghost"
-                    fontFamily="cursive"
                   >
                     {show ? 'HIDE' : 'SHOW'}
                   </Button>
@@ -245,7 +243,7 @@ const SignUp = () => {
             </FormControl>
 
             <FormControl isRequired>
-              <InputGroup>
+              <InputGroup mb="4">
                 <InputLeftAddon children="+91"></InputLeftAddon>
                 <Input
                   type="number"

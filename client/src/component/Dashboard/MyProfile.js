@@ -11,7 +11,7 @@ import axios from 'axios';
 
 export default function MyProfile() {
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
 
   const toast = useToast();
   useEffect(() => {
@@ -133,7 +133,7 @@ export default function MyProfile() {
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Posts</Text>
-            <Text>Make query to fill this</Text>
+            <Text>0</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="1" pt="3" d="flex" justifyContent="space-between">
