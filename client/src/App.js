@@ -7,29 +7,25 @@ import Landing from './component/LandingPage/LandingPage';
 
 import { useQuery } from 'react-query';
 import { useAtom } from 'jotai';
-import { loggedIn } from './store';
+import { loggedIn, currUserID } from './store';
 import axios from 'axios';
-
-const breakpoints = ['360px', '768px', '1024px', '1440px'];
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
 
 export default function App() {
   const [loggedInCheck, setLogged] = useAtom(loggedIn);
+  const [uuid, setUUID] = useAtom(currUserID);
 
   const checkLoggedIn = async () => {
     const res = await axios.get('/api/auth/isLoggedIn', {
       withCredentials: true
     });
-
-    setLogged(res.data);
+    // console.log('stuff : ', res.data);
+    setLogged(res.data.loggedIn);
+    setUUID(res.data.UUID);
   };
 
   const { data } = useQuery('checkAuth', checkLoggedIn);
 
-  console.log('logged here = ', loggedInCheck);
+  // console.log('logged here = ', loggedInCheck);
 
   return (
     <Router>
