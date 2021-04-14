@@ -1,7 +1,61 @@
-import React from 'react';
-import { Box, Divider, Text,   } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  Divider,
+  Text,
+  useToast,
+  Spinner,
+  Center
+} from '@chakra-ui/react';
+import axios from 'axios';
 
 export default function MyProfile() {
+  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState({});
+
+  const toast = useToast();
+  useEffect(() => {
+    try {
+      setLoading(true);
+      const getUser = async () => {
+        const res = await axios.get('/api/user/getinfo', {
+          withCredentials: true
+        });
+        // console.log('res : ', res);
+        setUserData(res.data.data);
+      };
+
+      getUser();
+      setLoading(false);
+    } catch (err) {
+      console.log('err =  ', err);
+      toast({
+        title: 'Could not fetch user info',
+        status: 'warning',
+        isClosable: true
+      });
+      setLoading(false);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) {
+    return (
+      <Box>
+        <Center>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </Center>
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <Box>
@@ -42,17 +96,17 @@ export default function MyProfile() {
             justifyContent="space-between"
           >
             <Text fontWeight="semibold">Name</Text>
-            <Text>xyz abc</Text>
+            <Text>{userData.userName}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Email ID</Text>
-            <Text>xyz@gmail.com</Text>
+            <Text>{userData.emailID}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Phone Number</Text>
-            <Text>2838383831</Text>
+            <Text>{userData.phoneNumber}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box
@@ -63,7 +117,7 @@ export default function MyProfile() {
             justifyContent="space-between"
           >
             <Text fontWeight="semibold">Age</Text>
-            <Text>20</Text>
+            <Text>{userData.age}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box
@@ -74,17 +128,17 @@ export default function MyProfile() {
             justifyContent="space-between"
           >
             <Text fontWeight="semibold">Occupation</Text>
-            <Text>Student</Text>
+            <Text>{userData.occupation}</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="4" pt="4" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Posts</Text>
-            <Text>23</Text>
+            <Text>0</Text>
           </Box>
           <Divider height="0.5px" />
           <Box pb="1" pt="3" d="flex" justifyContent="space-between">
             <Text fontWeight="semibold">Account Created</Text>
-            <Text>13 April,2021</Text>
+            <Text>{userData.dateCreated}</Text>
           </Box>
         </Box>
       </Box>
