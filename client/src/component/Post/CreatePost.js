@@ -24,7 +24,7 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.table(title, description);
+    // console.table(title, description);
     try {
       setLoading(true);
       const res = await axios.post(

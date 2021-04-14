@@ -55,6 +55,7 @@ export default function LandingPage() {
                   <PrivateRoute path="/profile" component={MyProfile} />
                   <PrivateRoute
                     path="/individualPost"
+                    // render={(props) => <IndividualPost {...props} />}
                     component={IndividualPost}
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />

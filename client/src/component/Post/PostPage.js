@@ -6,7 +6,8 @@ import {
   Link,
   Flex,
   Spinner,
-  Center
+  Center,
+  Checkbox
 } from '@chakra-ui/react';
 import { AddIcon, CalendarIcon, ChatIcon, InfoIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
@@ -14,11 +15,36 @@ import { AiOutlineLike, AiOutlineDislike, AiOutlineUser } from 'react-icons/ai';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { posts } from '../../store';
+import { posts, currUserID } from '../../store';
 
 const PostPage = () => {
   const [allPosts, setPosts] = useAtom(posts);
+  const [uuid, setUUID] = useAtom(currUserID);
   const [secondLoad, setSecondLoad] = useState(false);
+
+  const [myPosts, setMyPosts] = useState(false);
+
+  if (myPosts) {
+    console.log('only show user posts');
+    function sameUUID(data) {
+      return data.UUID === uuid;
+    }
+    const tempData = allPosts.filter(sameUUID);
+    setPosts(tempData);
+    console.log('tempData : ', tempData);
+  } else {
+    console.log('all posts');
+  }
+
+  useEffect(() => {
+    function sameUUID(data) {
+      return data.UUID === uuid;
+    }
+    const tempData = allPosts.filter(sameUUID);
+    let allPostss = allPosts.filter(sameUUID);
+    setPosts(allPostss);
+    console.log('tempData : ', tempData);
+  }, [myPosts]);
 
   const getPosts = async () => {
     setSecondLoad(true);
@@ -91,6 +117,12 @@ const PostPage = () => {
           </Button>
         </RouterLink>
       </Box>
+      <Checkbox
+        isChecked={myPosts}
+        onChange={(e) => setMyPosts(e.target.checked)}
+      >
+        Show My Posts
+      </Checkbox>
       {isLoading && (
         <Box>
           <Center>
@@ -109,7 +141,12 @@ const PostPage = () => {
           <div key={index}>
             <Box mt="5" bg="white" boxShadow="lg" borderRadius="lg">
               <Flex pt="3" justifyContent="space-between" ml="3" mr="3">
-                <RouterLink to="/individualPost">
+                <RouterLink
+                  to={{
+                    pathname: '/individualPost',
+                    state: x
+                  }}
+                >
                   <Link fontWeight="bold" fontSize="19px">
                     {x.Title}
                   </Link>

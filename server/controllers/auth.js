@@ -161,10 +161,17 @@ export const logout = async (req, res) => {
 export const isLoggedIn = async (req, res) => {
   try {
     const token = req.cookies.token;
-    if (!token || token === undefined) return res.json(false);
-    jwt.verify(token, JWT_SECRET);
-    return res.json(true);
+    if (!token || token === undefined)
+      return res.json({ loggedIn: false, UUID: '' });
+    // jwt.verify(token, JWT_SECRET);
+
+    const verified = jwt.verify(token, JWT_SECRET);
+    req.userId = verified.userId;
+    return res.json({
+      loggedIn: true,
+      UUID: req.userId
+    });
   } catch (err) {
-    return res.json(false);
+    return res.json({ loggedIn: false, UUID: '' });
   }
 };
