@@ -59,7 +59,7 @@ export const createPost = async (req, res) => {
     const dateString = today.toLocaleDateString();
 
     const createPostQuery =
-      'insert into posts (UUID, Title, SID, Description, CreatedAt, Time) values (?,?,?,?,?)';
+      'insert into posts (UUID, Title, SID, Description, CreatedAt, Time) values (?,?,?,?,?,?)';
 
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(createPostQuery, [
