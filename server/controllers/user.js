@@ -3,6 +3,7 @@ import { dbConfig } from '../config/db';
 
 export const getUserInfo = async (req, res) => {
   try {
+    console.log('here');
     const user_uuid = req.userId;
     const getUserQuery = 'Select * from userdata where UUID=?';
 

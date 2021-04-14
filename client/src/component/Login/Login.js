@@ -16,13 +16,12 @@ import {
 import { ArrowForwardIcon, InfoIcon, LockIcon } from '@chakra-ui/icons';
 
 import { useAtom } from 'jotai';
-import { loggedIn, userData } from '../../store';
+import { loggedIn } from '../../store';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [loggedInCheck, setLogged] = useAtom(loggedIn);
-  const [userDataApp, setUserData] = useAtom(userData);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -62,7 +61,6 @@ const Login = () => {
       });
 
       setLogged(true);
-
       setLoading(false);
     } catch (err) {
       const errorMsg = err.response.data.msg;
@@ -71,7 +69,7 @@ const Login = () => {
         status: 'warning',
         isClosable: true
       });
-      console.log('Successfully Failed');
+      // console.log('Successfully Failed');
       setLoading(false);
     }
   };
