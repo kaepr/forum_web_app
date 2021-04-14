@@ -11,6 +11,9 @@ import { AiOutlineLike } from 'react-icons/ai';
  *
  */
 export default function IndividualPost() {
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+  }
   return (
     <Box width="70%" mb="8">
       <Text
@@ -129,7 +132,7 @@ export default function IndividualPost() {
       </Box>
 
       <Box bg="white" boxShadow="lg" borderRadius="lg" ml="2" mr="2" pb="2">
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box>
           <Textarea
             name="reply"

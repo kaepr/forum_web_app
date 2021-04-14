@@ -16,17 +16,18 @@ export default function MyProfile() {
   const toast = useToast();
   useEffect(() => {
     try {
-      setLoading(true);
       const getUser = async () => {
+        setLoading(true);
         const res = await axios.get('/api/user/getinfo', {
           withCredentials: true
         });
         // console.log('res : ', res);
+        console.log(getUser.phoneNumber);
         setUserData(res.data.data);
+        setLoading(false);
       };
 
       getUser();
-      setLoading(false);
     } catch (err) {
       console.log('err =  ', err);
       toast({
@@ -70,7 +71,7 @@ export default function MyProfile() {
       </Box>
 
       <Box
-        bg="gray.100"
+        bg="white"
         height="100%"
         width="65%"
         pt="4"

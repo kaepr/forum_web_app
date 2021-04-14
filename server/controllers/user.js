@@ -13,7 +13,7 @@ export const getUserInfo = async (req, res) => {
       userName: userRows[0].User_Name,
       occupation: userRows[0].Occupation,
       age: userRows[0].Age,
-      phoneNumber: userRows[0].PhoneNumber,
+      phoneNumber: userRows[0].phoneNumber,
       emailID: userRows[0].EmailID,
       dateCreated: userRows[0].dateCreated
     };
