@@ -24,7 +24,7 @@ export default function App() {
       withCredentials: true
     });
 
-    setLogged(res.data);
+    // setLogged(res.data);
   };
 
   const { data } = useQuery('checkAuth', checkLoggedIn);
