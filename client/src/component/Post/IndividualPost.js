@@ -223,8 +223,6 @@ export default function IndividualPost(props) {
               onChange={(e) => handleChange(e.currentTarget.value)}
               isRequired="true"
               value={replyContent}
-              // focusBorderColor="blue.500"
-              // errorBorderColor="blue.500"
               boxShadow="none"
             ></Textarea>
           </Box>
