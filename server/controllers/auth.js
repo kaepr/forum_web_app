@@ -28,7 +28,7 @@ export const register = async (req, res) => {
         msg: 'Please enter all fields'
       });
     }
-
+    
     const emailExists = 'Select * from userdata where EmailID=?';
     const userNameExists = 'Select * from userdata where User_Name=?';
 
