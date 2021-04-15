@@ -176,7 +176,7 @@ export default function IndividualPost(props) {
               required="required"
               placeholder="Post Reply"
               onChange={(e) => handleChange(e.currentTarget.value)}
-              // value={replyContent}
+              value={replyContent}
             ></Textarea>
           </Box>
           <Button

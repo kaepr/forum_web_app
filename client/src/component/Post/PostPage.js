@@ -24,17 +24,19 @@ const PostPage = () => {
 
   const [myPosts, setMyPosts] = useState(false);
 
-  if (myPosts) {
-    console.log('only show user posts');
-    function sameUUID(data) {
-      return data.UUID === uuid;
+  const getMyPosts = () => {
+    if (myPosts) {
+      console.log('only show user posts');
+      function sameUUID(data) {
+        return data.UUID === uuid;
+      }
+      const tempData = allPosts.filter(sameUUID);
+      setMyPosts(tempData);
+      console.log('tempData : ', tempData);
+    } else {
+      console.log('all posts');
     }
-    const tempData = allPosts.filter(sameUUID);
-    setPosts(tempData);
-    console.log('tempData : ', tempData);
-  } else {
-    console.log('all posts');
-  }
+  };
 
   useEffect(() => {
     function sameUUID(data) {
@@ -56,6 +58,8 @@ const PostPage = () => {
     setSecondLoad(false);
     return res.data.data;
   };
+
+  const setChecked = () => {};
 
   const { data, isLoading } = useQuery('getProfileData', getPosts);
 
@@ -93,13 +97,13 @@ const PostPage = () => {
 
   return (
     <Box w="80%" h="80%">
-      <Box
+      <Flex
         w="100%"
         h="80%"
         rounded="lg"
-        display="flex"
-        alignItems="left"
+        alignItems="center"
         mt="5"
+        justifyContent="space-between"
       >
         <RouterLink to="/createPost">
           <Button
@@ -116,13 +120,19 @@ const PostPage = () => {
             Add Posts
           </Button>
         </RouterLink>
-      </Box>
-      <Checkbox
-        isChecked={myPosts}
-        onChange={(e) => setMyPosts(e.target.checked)}
-      >
-        Show My Posts
-      </Checkbox>
+        <Flex bg="white" p="2" rounded="lg">
+          <Checkbox
+            variantColor="green"
+            isChecked={getMyPosts}
+            onChange={(e) => {
+              setMyPosts(e.target.checked);
+            }}
+          >
+            Show My Posts
+          </Checkbox>
+        </Flex>
+      </Flex>
+
       {isLoading && (
         <Box>
           <Center>
