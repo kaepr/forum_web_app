@@ -13,7 +13,8 @@ import {
   Center,
   useToast
 } from '@chakra-ui/react';
-import { ArrowForwardIcon, InfoIcon, LockIcon } from '@chakra-ui/icons';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
 import { useAtom } from 'jotai';
 import { loggedIn } from '../../store';
@@ -75,21 +76,21 @@ const Login = () => {
   };
 
   return (
-    <Box rounded="lg" p="5" mb="3">
-      <Box mb="1">
-        <Text
-          textTransform="uppercase"
-          fontSize="3xl"
-          fontWeight="semibold"
-          letterSpacing="1px"
-        >
-          WELCOME BACK!
-        </Text>
+    <Box rounded="lg" mb="3">
+      <Box>
         <Text
           textTransform="uppercase"
           fontSize="2xl"
           fontWeight="semibold"
-          letterSpacing="1px"
+          letterSpacing="2px"
+        >
+          WELCOME BACK!
+        </Text>
+        <Text mt="4"
+          textTransform="uppercase"
+          fontSize="lg"
+          fontWeight="semibold"
+          letterSpacing="2px"
         >
           Enter your Credentials
         </Text>
@@ -102,14 +103,14 @@ const Login = () => {
         boxShadow="lg"
         rounded="lg"
         p="6"
-        mb="4"
         mt="4"
+        
       >
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<InfoIcon />} />
+                <InputLeftElement children={<AiOutlineMail />} />
                 <Input
                   type="email"
                   placeholder="Email"
@@ -123,7 +124,7 @@ const Login = () => {
 
             <FormControl isRequired>
               <InputGroup mb="4">
-                <InputLeftElement children={<LockIcon />} />
+                <InputLeftElement children={<AiOutlineLock />} />
                 <Input
                   pr="4.5rem"
                   type={show ? 'text' : 'password'}

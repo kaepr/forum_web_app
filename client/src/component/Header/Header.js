@@ -94,7 +94,7 @@ const LoggedInRoutes = () => {
       |
       <RouterLink to="/posts">
         <Link fontSize="18px" textTransform="uppercase" pr="8" pl="8">
-          Posts
+          All Posts
         </Link>{' '}
       </RouterLink>
       |

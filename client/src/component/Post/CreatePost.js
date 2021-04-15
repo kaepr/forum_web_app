@@ -12,7 +12,7 @@ import {
   Center,
   useToast
 } from '@chakra-ui/react';
-import { Link as RouterLink,Redirect } from 'react-router-dom';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const CreatePost = () => {
@@ -20,7 +20,6 @@ const CreatePost = () => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [postCreated, setPostCreated] = useState(false);
-
 
   const toast = useToast();
 
@@ -142,7 +141,6 @@ const CreatePost = () => {
           align="center"
           pb="6"
         >
-          
           <Button
             type="submit"
             bgColor="green.400"
