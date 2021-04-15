@@ -123,3 +123,51 @@ export const createReply = async (req, res) => {
     });
   }
 };
+
+export const deletePost = async (req, res) => {
+  try {
+    const { SID } = req.body;
+    const user_uuid = req.userId;
+
+    const deletePostQuery =
+      'delete from posts where posts.SID=? AND posts.UUID=?';
+
+    const connection = await mysql.createConnection(dbConfig);
+    const [deletePost] = await connection.execute(deletePostQuery, [
+      SID,
+      user_uuid
+    ]);
+
+    return res.status(201).json({
+      msg: 'Deleted Post Successfully'
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: 'Error in deleting post'
+    });
+  }
+};
+
+export const deleteReply = async (req, res) => {
+  try {
+    const { replyId } = req.body;
+    const user_uuid = req.userId;
+
+    const deleteReplyQuery =
+      'delete from postreplies where postreplies.ReplyID=? and postreplies.user_id=?';
+
+    const connection = await mysql.createConnection(dbConfig);
+    const [deleteReply] = await connection.execute(deleteReplyQuery, [
+      replyId,
+      user_uuid
+    ]);
+
+    return res.status(201).json({
+      msg: 'Deleted Reply Successfully'
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: 'Error in deleting reply'
+    });
+  }
+};

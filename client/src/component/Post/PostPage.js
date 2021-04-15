@@ -18,11 +18,13 @@ import { useAtom } from 'jotai';
 import { posts, currUserID } from '../../store';
 
 const PostPage = () => {
-  const [allPosts, setPosts] = useAtom(posts);
+  // const [allPosts, setPosts] = useAtom(posts);
   const [uuid, setUUID] = useAtom(currUserID);
   const [secondLoad, setSecondLoad] = useState(false);
-
+  const [allPosts, setAllPosts] = useState([]);
   const [myPosts, setMyPosts] = useState(false);
+
+  let arrToShow = [];
 
   if (myPosts) {
     console.log('only show user posts');
@@ -30,35 +32,42 @@ const PostPage = () => {
       return data.UUID === uuid;
     }
     const tempData = allPosts.filter(sameUUID);
-    setPosts(tempData);
+    // setPosts(tempData);
     console.log('tempData : ', tempData);
   } else {
     console.log('all posts');
   }
 
-  useEffect(() => {
+  const handleChange = () => {
+    // e.preventDefault();
     function sameUUID(data) {
       return data.UUID === uuid;
     }
     const tempData = allPosts.filter(sameUUID);
-    let allPostss = allPosts.filter(sameUUID);
-    setPosts(allPostss);
-    console.log('tempData : ', tempData);
-  }, [myPosts]);
+    console.log('temp data : ', tempData);
+    setMyPosts(!myPosts);
+    console.log('my posts bool : ', myPosts);
+    if (myPosts) {
+      arrToShow = tempData;
+    } else {
+      arrToShow = allPosts;
+    }
+  };
 
   const getPosts = async () => {
     setSecondLoad(true);
     const res = await axios.get('/api/post/getallposts', {
       withCredentials: true
     });
-
-    setPosts(res.data.data);
+    setAllPosts(res.data.data);
+    // setPosts(res.data.data);
+    arrToShow = res.data.data;
     setSecondLoad(false);
     return res.data.data;
   };
 
-  const { data, isLoading } = useQuery('getProfileData', getPosts);
-
+  const { data, isLoading } = useQuery('getPostData', getPosts);
+  arrToShow = data;
   if (secondLoad) {
     return (
       <Box>
@@ -119,7 +128,7 @@ const PostPage = () => {
       </Box>
       <Checkbox
         isChecked={myPosts}
-        onChange={(e) => setMyPosts(e.target.checked)}
+        onChange={(e) => handleChange(e.target.checked)}
       >
         Show My Posts
       </Checkbox>
@@ -136,7 +145,7 @@ const PostPage = () => {
           </Center>
         </Box>
       )}
-      {allPosts.map((x, index) => {
+      {arrToShow.map((x, index) => {
         return (
           <div key={index}>
             <Box mt="5" bg="white" boxShadow="lg" borderRadius="lg">

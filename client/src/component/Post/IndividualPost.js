@@ -98,6 +98,7 @@ export default function IndividualPost(props) {
       });
     }
   };
+
   return (
     <Box width="70%" mb="8">
       <Box align="left" ml="2" mb="4">
