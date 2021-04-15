@@ -18,71 +18,79 @@ import { useAtom } from 'jotai';
 import { posts, currUserID } from '../../store';
 
 const PostPage = () => {
-  // const [allPosts, setPosts] = useAtom(posts);
+  const [Posts, setPosts] = useAtom(posts);
   const [uuid, setUUID] = useAtom(currUserID);
   const [secondLoad, setSecondLoad] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
-  const [myPosts, setMyPosts] = useState(false);
 
-  let arrToShow = [];
+  // const [myPosts, setMyPosts] = useState(false);
 
-  if (myPosts) {
-    console.log('only show user posts');
-    function sameUUID(data) {
-      return data.UUID === uuid;
-    }
-    const tempData = allPosts.filter(sameUUID);
-    // setPosts(tempData);
-    console.log('tempData : ', tempData);
-  } else {
-    console.log('all posts');
-  }
+  // let arrToShow = [];
 
-  const handleChange = () => {
-    // e.preventDefault();
-    function sameUUID(data) {
-      return data.UUID === uuid;
-    }
-    const tempData = allPosts.filter(sameUUID);
-    console.log('temp data : ', tempData);
-    setMyPosts(!myPosts);
-    console.log('my posts bool : ', myPosts);
-    if (myPosts) {
-      arrToShow = tempData;
-    } else {
-      arrToShow = allPosts;
-    }
-  };
+  // if (myPosts) {
+  //   // console.log('only show user posts');
+  //   function sameUUID(data) {
+  //     return data.UUID === uuid;
+  //   }
+  //   const tempData = allPosts.filter(sameUUID);
+  //   // setPosts(tempData);
+  //   // console.log('tempData : ', tempData);
+  // } else {
+  //   // console.log('all posts');
+  // }
+
+  // const handleChange = () => {
+  //   // e.preventDefault();
+  //   function sameUUID(data) {
+  //     return data.UUID === uuid;
+  //   }
+  //   const tempData = allPosts.filter(sameUUID);
+  //   console.log('temp data : ', tempData);
+  //   setMyPosts(!myPosts);
+  //   console.log('my posts bool : ', myPosts);
+  //   if (myPosts) {
+  //     arrToShow = tempData;
+  //   } else {
+  //     arrToShow = allPosts;
+  //   }
+  // };
 
   const getPosts = async () => {
-    setSecondLoad(true);
-    const res = await axios.get('/api/post/getallposts', {
-      withCredentials: true
-    });
-    setAllPosts(res.data.data);
-    // setPosts(res.data.data);
-    arrToShow = res.data.data;
-    setSecondLoad(false);
-    return res.data.data;
+    try {
+      setSecondLoad(true);
+      const res = await axios.get('/api/post/getallposts', {
+        withCredentials: true
+      });
+      setPosts(res.data.data);
+      // arrToShow = res.data.data;
+      setAllPosts(res.data.data);
+      setSecondLoad(false);
+      return res.data.data;
+    } catch (err) {
+      console.log('error = ', err);
+      setAllPosts([]);
+      setPosts([]);
+      return [];
+    }
   };
 
   const { data, isLoading } = useQuery('getPostData', getPosts);
-  arrToShow = data;
-  if (secondLoad) {
-    return (
-      <Box>
-        <Center>
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </Center>
-      </Box>
-    );
-  }
+  // arrToShow = data;
+  // if (secondLoad) {
+  //   return (
+  //     <Box>
+  //       <Center>
+  //         <Spinner
+  //           thickness="4px"
+  //           speed="0.65s"
+  //           emptyColor="gray.200"
+  //           color="blue.500"
+  //           size="xl"
+  //         />
+  //       </Center>
+  //     </Box>
+  //   );
+  // }
 
   if (isLoading) {
     return (
@@ -126,12 +134,12 @@ const PostPage = () => {
           </Button>
         </RouterLink>
       </Box>
-      <Checkbox
-        isChecked={myPosts}
-        onChange={(e) => handleChange(e.target.checked)}
+      {/* <Checkbox
+      // isChecked={myPosts}
+      // onChange={(e) => handleChange(e.target.checked)}
       >
         Show My Posts
-      </Checkbox>
+      </Checkbox> */}
       {isLoading && (
         <Box>
           <Center>
@@ -145,7 +153,7 @@ const PostPage = () => {
           </Center>
         </Box>
       )}
-      {arrToShow.map((x, index) => {
+      {Posts.map((x, index) => {
         return (
           <div key={index}>
             <Box mt="5" bg="white" boxShadow="lg" borderRadius="lg">

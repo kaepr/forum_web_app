@@ -30,11 +30,7 @@ export default function LandingPage() {
             boxShadow="lg"
             p="2"
           >
-            <Text
-              fontSize="32px"
-              fontWeight="bold"
-              letterSpacing="5px"
-            >
+            <Text fontSize="32px" fontWeight="bold" letterSpacing="5px">
               DisQus-Hub
             </Text>
           </Box>
@@ -58,9 +54,6 @@ export default function LandingPage() {
                     component={IndividualPost}
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />
-                  {/* <Route path="/profile" component={MyProfile} /> */}
-                  {/* <Route path="/indiPost" component={IndividualPost} /> */}
-                  {/* <Route path="/users">Users</Route> */}
                 </Switch>
               </Box>
             </Box>

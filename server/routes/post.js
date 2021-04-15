@@ -16,7 +16,7 @@ router.get('/getallposts', isLogged, getAllPosts);
 router.post('/createpost', isLogged, createPost);
 router.post('/createreply', isLogged, createReply);
 router.post('/getallreplies', isLogged, getAllReplies);
-router.delete('/reply', isLogged, deleteReply);
-router.delete('/post', isLogged, deletePost);
+router.post('/reply', isLogged, deleteReply);
+router.post('/post', isLogged, deletePost);
 
 module.exports = router;
