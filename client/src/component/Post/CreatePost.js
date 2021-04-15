@@ -12,13 +12,15 @@ import {
   Center,
   useToast
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink,Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+  const [postCreated, setPostCreated] = useState(false);
+
 
   const toast = useToast();
 
@@ -45,6 +47,7 @@ const CreatePost = () => {
       });
 
       setLoading(false);
+      setPostCreated(true);
     } catch (err) {
       const errorMsg = err.response.data.msg;
       toast({
@@ -56,6 +59,16 @@ const CreatePost = () => {
       setLoading(false);
     }
   };
+
+  if (postCreated) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/posts'
+        }}
+      />
+    );
+  }
 
   return (
     <Box bg="white" boxShadow="lg" borderRadius="lg" width="70%">
@@ -129,6 +142,7 @@ const CreatePost = () => {
           align="center"
           pb="6"
         >
+          
           <Button
             type="submit"
             bgColor="green.400"
