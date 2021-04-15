@@ -20,6 +20,25 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
+export const getAllPostsUser = async (req, res) => {
+  try {
+    const user_uuid = req.userId;
+    const getPostsQuery =
+      'Select Title, Description, SID, posts.UUID, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID and posts.UUID = ? ORDER BY posts.Time DESC';
+    const connection = await mysql.createConnection(dbConfig);
+    const [postRows] = await connection.execute(getPostsQuery, [user_uuid]);
+    // console.log('res : ', postRows);
+    return res.status(200).json({
+      data: postRows
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      msg: 'Error in getting posts'
+    });
+  }
+};
+
 export const getAllReplies = async (req, res) => {
   try {
     const { SID } = req.body;
@@ -45,6 +64,8 @@ export const createPost = async (req, res) => {
   try {
     const { title, description } = req.body;
 
+    console.log('title, desc : ', title, description);
+
     if (!title || !description) {
       return res.status(400).json({
         msg: 'Please enter all fields'
@@ -53,6 +74,8 @@ export const createPost = async (req, res) => {
 
     const user_uuid = req.userId;
     const post_id = uuidv4();
+
+    console.log('uuid : ', user_uuid);
 
     const time = Date.now();
     const today = new Date(time);
@@ -116,6 +139,54 @@ export const createReply = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       msg: 'Error in creating reply'
+    });
+  }
+};
+
+export const deletePost = async (req, res) => {
+  try {
+    const { SID } = req.body;
+    const user_uuid = req.userId;
+
+    const deletePostQuery =
+      'delete from posts where posts.SID=? AND posts.UUID=?';
+
+    const connection = await mysql.createConnection(dbConfig);
+    const [deletePost] = await connection.execute(deletePostQuery, [
+      SID,
+      user_uuid
+    ]);
+
+    return res.status(201).json({
+      msg: 'Deleted Post Successfully'
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: 'Error in deleting post'
+    });
+  }
+};
+
+export const deleteReply = async (req, res) => {
+  try {
+    const { replyId } = req.body;
+    const user_uuid = req.userId;
+
+    const deleteReplyQuery =
+      'delete from postreplies where postreplies.ReplyID=? and postreplies.user_id=?';
+
+    const connection = await mysql.createConnection(dbConfig);
+    const [deleteReply] = await connection.execute(deleteReplyQuery, [
+      replyId,
+      user_uuid
+    ]);
+
+    return res.status(201).json({
+      msg: 'Deleted Reply Successfully'
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: 'Error in deleting reply'
     });
   }
 };

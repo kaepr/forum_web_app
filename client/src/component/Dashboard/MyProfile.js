@@ -7,11 +7,7 @@ import {
   Center,
   useToast
 } from '@chakra-ui/react';
-import { useQuery } from 'react-query';
-import { useAtom } from 'jotai';
 import axios from 'axios';
-
-import { uData } from '../../store';
 
 export default function MyProfile() {
   // const [uDataBack, setSetUserDataBackend] = useAtom(uData);
@@ -26,10 +22,6 @@ export default function MyProfile() {
   // };
 
   const toast = useToast();
-
-  // const { data, isLoading } = useQuery('getProfileData', getUser);
-  // console.log(data);
-  // useEffect(() => {}, [isLoading]);
 
   const [loading, setLoading] = useState(false);
 

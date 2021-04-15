@@ -10,6 +10,7 @@ import MyProfile from '../Dashboard/MyProfile';
 import IndividualPost from '../Post/IndividualPost';
 import { PrivateRoute } from '../../component/PrivateRoute/PrivateRoute';
 import CreatePost from '../Post/CreatePost';
+import MyPostPage from '../Post/MyPostPage';
 
 export default function LandingPage() {
   return (
@@ -30,11 +31,7 @@ export default function LandingPage() {
             boxShadow="lg"
             p="2"
           >
-            <Text
-              fontSize="32px"
-              fontWeight="bold"
-              letterSpacing="5px"
-            >
+            <Text fontSize="32px" fontWeight="bold" letterSpacing="5px">
               DisQus-Hub
             </Text>
           </Box>
@@ -54,13 +51,10 @@ export default function LandingPage() {
                   <PrivateRoute path="/profile" component={MyProfile} />
                   <PrivateRoute
                     path="/individualPost"
-                    // render={(props) => <IndividualPost {...props} />}
                     component={IndividualPost}
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />
-                  {/* <Route path="/profile" component={MyProfile} /> */}
-                  {/* <Route path="/indiPost" component={IndividualPost} /> */}
-                  {/* <Route path="/users">Users</Route> */}
+                  <PrivateRoute path="/myposts" component={MyPostPage} />
                 </Switch>
               </Box>
             </Box>

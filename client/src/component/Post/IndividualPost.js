@@ -9,33 +9,30 @@ import {
   Center,
   Spinner
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
 import { ArrowBackIcon, DeleteIcon, CalendarIcon } from '@chakra-ui/icons';
 import { AiOutlineUser } from 'react-icons/ai';
 import PostReply from './PostReply';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useAtom } from 'jotai';
-import { postReplies } from '../../store';
+import { postReplies, currUserID } from '../../store';
 
 export default function IndividualPost(props) {
   const postData = props.location.state;
-
-  console.log('post data sid : ', postData.SID);
-
   const [allReplies, setAllReplies] = useAtom(postReplies);
+  const [user_uuid, _] = useAtom(currUserID);
+
+  const isOwner = postData.UUID === user_uuid;
 
   const [loading, setLoading] = useState(false);
+  const [postDeleted, setPostDeleted] = useState(false);
   const [replies, setReplies] = useState([]);
   const [replyContent, setReplyContent] = useState('');
 
   const toast = useToast();
 
-  // Handle Getting all replies
-  const [loading2, setLoading2] = useState(false);
   const getReplies = async () => {
-    // setReplyLoading(true);
-    setLoading2(true);
     const res = await axios.post(
       '/api/post/getallreplies',
       {
@@ -45,19 +42,13 @@ export default function IndividualPost(props) {
         withCredentials: true
       }
     );
-    console.log('res : ', res.data);
-    // console.log(userData);
     setReplies(res.data.data);
     setAllReplies(res.data.data);
-    // setReplyLoading(false);
-    setLoading2(false);
     return res.data.data;
   };
 
-  const { data, isLoading } = useQuery('repliesAll', getReplies);
-
-  // console.log('data = ', data);
-
+  const { data, isLoading, refetch } = useQuery('repliesAll', getReplies);
+  console.log('is loading : ', isLoading);
   // Handle Submit
   const handleChange = (value) => {
     setReplyContent(value);
@@ -78,13 +69,14 @@ export default function IndividualPost(props) {
           withCredentials: true
         }
       );
-
+      await refetch();
       toast({
         title: 'Reply Created',
         status: 'success',
         isClosable: true
       });
 
+      handleChange('');
       setReplyContent('');
       setLoading(false);
     } catch (err) {
@@ -98,6 +90,53 @@ export default function IndividualPost(props) {
       });
     }
   };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      console.log('postData sid : ', postData);
+      await axios.post(
+        '/api/post/post',
+        {
+          SID: postData.SID
+        },
+        {
+          withCredentials: true
+        }
+      );
+      toast({
+        title: 'Post Deleted Successfully',
+        status: 'success',
+        isClosable: true
+      });
+
+      handleChange('');
+      setReplyContent('');
+      setLoading(false);
+      setPostDeleted(true);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+      const errorMsg = 'Post could not be deleted';
+      toast({
+        title: errorMsg,
+        status: 'warning',
+        isClosable: true
+      });
+    }
+  };
+
+  if (postDeleted) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/posts'
+        }}
+      />
+    );
+  }
+
   return (
     <Box width="70%" mb="8">
       <Box align="left" ml="2" mb="4">
@@ -152,7 +191,13 @@ export default function IndividualPost(props) {
             _hover={{ bgColor: 'transparent' }}
             size="10px"
           >
-            <DeleteIcon color="red.600" size={18} />
+            {isOwner && (
+              <DeleteIcon
+                color="red.600"
+                size={18}
+                onClick={(e) => handleDelete(e)}
+              />
+            )}{' '}
           </Button>
         </Flex>
       </Box>
@@ -176,7 +221,9 @@ export default function IndividualPost(props) {
               required="required"
               placeholder="Post Reply"
               onChange={(e) => handleChange(e.currentTarget.value)}
-              // value={replyContent}
+              isRequired="true"
+              value={replyContent}
+              boxShadow="none"
             ></Textarea>
           </Box>
           <Button
@@ -194,7 +241,7 @@ export default function IndividualPost(props) {
         </form>
       </Box>
 
-      {(isLoading || loading2) && (
+      {(isLoading || loading) && (
         <Center mt="2">
           <Spinner
             thickness="4px"
@@ -219,7 +266,7 @@ export default function IndividualPost(props) {
       {allReplies.map((data, index) => {
         return (
           <div key={index}>
-            <PostReply props={data} />
+            <PostReply props={data} refetch={refetch} />
           </div>
         );
       })}
