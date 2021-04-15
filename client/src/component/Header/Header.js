@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const LoggedOutRoutes = () => {
   return (
-    <Box>
+    <Box >
       <RouterLink to="/">
         {' '}
         <Link
@@ -15,6 +15,7 @@ const LoggedOutRoutes = () => {
           textDecoration="none"
           textTransform="uppercase"
           pr="8"
+          fontFamily=""
         >
           HOME
         </Link>

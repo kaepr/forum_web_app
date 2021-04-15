@@ -36,7 +36,7 @@ const Login = () => {
     return (
       <Redirect
         to={{
-          pathname: '/'
+          pathname: '/profile'
         }}
       />
     );

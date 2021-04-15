@@ -51,7 +51,7 @@ const SignUp = () => {
     return (
       <Redirect
         to={{
-          pathname: '/'
+          pathname: '/profile'
         }}
       />
     );
@@ -194,7 +194,7 @@ const SignUp = () => {
                 <InputLeftElement children={<AiOutlineLock />} />
                 <Input
                   pr="4.5rem"
-                  type={show ? 'text' : 'password'}
+                  type={show2 ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   border="1px"
                   borderColor="gray.400"

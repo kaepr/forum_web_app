@@ -14,7 +14,7 @@ const Home = () => {
       justifyContent="space-between"
     >
       <Box align="left" width="50%">
-        <Text align="justify" fontSize="18px">
+        <Text align="justify" fontSize="18px" >
           <strong>DisQusHub</strong> has been created as a platform where people
           can post their own opinions and views and have discussion with
           different communities from all over the world. People from different
@@ -43,8 +43,8 @@ const Home = () => {
               Developers:
             </Text>
             <Text letterSpacing="1px">Aditya Srivastava</Text>
-            <Text letterSpacing="1px">Shagun Agarwal</Text>
-            <Text letterSpacing="1px">Siddhant Mittal</Text>
+            <Text letterSpacing="1px" mt="1">Shagun Agarwal</Text>
+            <Text letterSpacing="1px" mt="1">Siddhant Mittal</Text>
           </Flex>
         </Box>
       </Flex>
