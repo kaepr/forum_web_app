@@ -20,6 +20,25 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
+export const getAllPostsUser = async (req, res) => {
+  try {
+    const user_uuid = req.userId;
+    const getPostsQuery =
+      'Select Title, Description, SID, posts.UUID, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID and posts.UUID = ? ORDER BY posts.Time DESC';
+    const connection = await mysql.createConnection(dbConfig);
+    const [postRows] = await connection.execute(getPostsQuery, [user_uuid]);
+    // console.log('res : ', postRows);
+    return res.status(200).json({
+      data: postRows
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      msg: 'Error in getting posts'
+    });
+  }
+};
+
 export const getAllReplies = async (req, res) => {
   try {
     const { SID } = req.body;

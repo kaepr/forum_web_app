@@ -98,15 +98,20 @@ const PostReply = (props) => {
         {replyData.Description}
       </Box>
       <Flex alignItems="center" pr="3" pb="2" pt="2" justifyContent="flex-end">
-        <Button bg="transparent" _hover={{ bgColor: 'transparent' }} size="sm">
-          {isOwner && (
+        {isOwner && (
+          <Button
+            onClick={(e) => handleDelete(e)}
+            bg="transparent"
+            _hover={{ bgColor: 'transparent' }}
+            size="sm"
+          >
             <DeleteIcon
               color="red.600"
               size={22}
-              onClick={(e) => handleDelete(e)}
+              // onClick={(e) => handleDelete(e)}
             />
-          )}
-        </Button>
+          </Button>
+        )}
       </Flex>
     </Box>
   );

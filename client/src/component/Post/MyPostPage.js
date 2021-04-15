@@ -6,8 +6,7 @@ import {
   Link,
   Flex,
   Spinner,
-  Center,
-  Checkbox
+  Center
 } from '@chakra-ui/react';
 import { AddIcon, CalendarIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
@@ -15,10 +14,10 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { posts, currUserID } from '../../store';
+import { posts, currUserID, myPosts } from '../../store';
 
-const PostPage = () => {
-  const [Posts, setPosts] = useAtom(posts);
+const MyPostPage = () => {
+  const [Posts, setPosts] = useAtom(myPosts);
   const [uuid, setUUID] = useAtom(currUserID);
   const [secondLoad, setSecondLoad] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
@@ -26,7 +25,7 @@ const PostPage = () => {
   const getPosts = async () => {
     try {
       setSecondLoad(true);
-      const res = await axios.get('/api/post/getallposts', {
+      const res = await axios.get('/api/post/getmyposts', {
         withCredentials: true
       });
       setPosts(res.data.data);
@@ -36,8 +35,8 @@ const PostPage = () => {
       return res.data.data;
     } catch (err) {
       console.log('error = ', err);
-      // setAllPosts([]);
-      // setPosts([]);
+      //   setAllPosts([]);
+      //   setPosts([]);
       return [];
     }
   };
@@ -138,4 +137,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default MyPostPage;
