@@ -10,6 +10,7 @@ import MyProfile from '../Dashboard/MyProfile';
 import IndividualPost from '../Post/IndividualPost';
 import { PrivateRoute } from '../../component/PrivateRoute/PrivateRoute';
 import CreatePost from '../Post/CreatePost';
+import MyPostPage from '../Post/MyPostPage';
 
 export default function LandingPage() {
   return (
@@ -50,10 +51,10 @@ export default function LandingPage() {
                   <PrivateRoute path="/profile" component={MyProfile} />
                   <PrivateRoute
                     path="/individualPost"
-                    // render={(props) => <IndividualPost {...props} />}
                     component={IndividualPost}
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />
+                  <PrivateRoute path="/myposts" component={MyPostPage} />
                 </Switch>
               </Box>
             </Box>

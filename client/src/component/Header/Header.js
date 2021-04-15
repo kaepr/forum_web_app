@@ -88,13 +88,19 @@ const LoggedInRoutes = () => {
           textTransform="uppercase"
           pr="8"
         >
-          HOME
+          Home
         </Link>
       </RouterLink>{' '}
       |
       <RouterLink to="/posts">
         <Link fontSize="18px" textTransform="uppercase" pr="8" pl="8">
-          POSTS
+          All Posts
+        </Link>{' '}
+      </RouterLink>
+      |
+      <RouterLink to="/myposts">
+        <Link fontSize="18px" textTransform="uppercase" pr="8" pl="8">
+          My Posts
         </Link>{' '}
       </RouterLink>
       |

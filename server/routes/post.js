@@ -9,10 +9,12 @@ import {
   createReply,
   getAllReplies,
   deletePost,
-  deleteReply
+  deleteReply,
+  getAllPostsUser
 } from '../controllers/post';
 
 router.get('/getallposts', isLogged, getAllPosts);
+router.get('/getmyposts', isLogged, getAllPostsUser);
 router.post('/createpost', isLogged, createPost);
 router.post('/createreply', isLogged, createReply);
 router.post('/getallreplies', isLogged, getAllReplies);

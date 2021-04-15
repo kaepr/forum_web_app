@@ -45,6 +45,7 @@ const CreatePost = () => {
       });
 
       setLoading(false);
+
     } catch (err) {
       const errorMsg = err.response.data.msg;
       toast({
@@ -56,6 +57,9 @@ const CreatePost = () => {
       setLoading(false);
     }
   };
+
+
+  
 
   return (
     <Box bg="white" boxShadow="lg" borderRadius="lg" width="70%">

@@ -14,12 +14,13 @@ import {
   Center,
   useToast
 } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
-  ArrowForwardIcon,
-  EmailIcon,
-  InfoIcon,
-  LockIcon
-} from '@chakra-ui/icons';
+  AiOutlineUser,
+  AiOutlineMail,
+  AiOutlineInfoCircle,AiOutlineLock
+} from 'react-icons/ai';
+import { BsBriefcase } from 'react-icons/bs';
 
 import { useAtom } from 'jotai';
 import { loggedIn } from '../../store';
@@ -30,7 +31,9 @@ const SignUp = () => {
   const [loggedInCheck, setLogged] = useAtom(loggedIn);
 
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
   const handleClick = () => setShow(!show);
+  const handleClick2 = () => setShow2(!show2);
   const [loading, setLoading] = useState(false);
 
   // Form Data
@@ -115,13 +118,13 @@ const SignUp = () => {
   };
 
   return (
-    <Box rounded="lg" p="5" mb="3">
-      <Box mb="1">
+    <Box rounded="lg" mb="3">
+      <Box mb="3">
         <Text
           textTransform="uppercase"
-          fontSize="3xl"
+          fontSize="2xl"
           fontWeight="semibold"
-          letterSpacing="1px"
+          letterSpacing="2px"
         >
           CREATE A NEW ACCOUNT
         </Text>
@@ -133,48 +136,45 @@ const SignUp = () => {
         boxShadow="lg"
         rounded="lg"
         p="6"
-        mb="4"
+        mb="8"
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <Stack spacing={3}>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<EmailIcon />} />
+                <InputLeftElement children={<AiOutlineMail />} />
                 <Input
                   type="email"
                   placeholder="Email"
                   aria-label="Email"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setEmail(e.currentTarget.value)}
                 />
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<InfoIcon />} />
+                <InputLeftElement children={<AiOutlineUser />} />
                 <Input
                   type="info"
                   placeholder="User Name"
                   aria-label="User Name"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setUserName(e.currentTarget.value)}
                 />
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<LockIcon />} />
+                <InputLeftElement children={<AiOutlineLock />} />
                 <Input
                   pr="4.5rem"
                   type={show ? 'text' : 'password'}
                   placeholder="Password"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setPassword(e.currentTarget.value)}
                 />
                 <InputRightElement width="4.5rem">
@@ -191,52 +191,49 @@ const SignUp = () => {
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<LockIcon />} />
+                <InputLeftElement children={<AiOutlineLock />} />
                 <Input
                   pr="4.5rem"
                   type={show ? 'text' : 'password'}
                   placeholder="Confirm Password"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setConfirmPassword(e.currentTarget.value)}
                 />
                 <InputRightElement width="4.5rem">
                   <Button
                     h="1.75rem"
                     size="xs"
-                    onClick={handleClick}
+                    onClick={handleClick2}
                     variant="ghost"
                   >
-                    {show ? 'HIDE' : 'SHOW'}
+                    {show2 ? 'HIDE' : 'SHOW'}
                   </Button>
                 </InputRightElement>
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<InfoIcon />} />
+                <InputLeftElement children={<BsBriefcase />} />
                 <Input
                   type="info"
                   placeholder="Occupation"
                   aria-label="Occupation"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setOccupation(e.currentTarget.value)}
                 />
               </InputGroup>
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftElement children={<InfoIcon />} />
+                <InputLeftElement children={<AiOutlineInfoCircle />} />
                 <Input
                   type="number"
                   placeholder="Age"
                   aria-label="Age"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setAge(e.currentTarget.value)}
                 />
               </InputGroup>
@@ -250,8 +247,7 @@ const SignUp = () => {
                   placeholder="Phone Number"
                   aria-label="Phone Number"
                   border="1px"
-                  borderColor="black"
-                  fontFamily="sans-serif"
+                  borderColor="gray.400"
                   onChange={(e) => setPhoneNumber(e.currentTarget.value)}
                 />
               </InputGroup>
