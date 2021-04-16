@@ -4,4 +4,6 @@
 *::after {
   box-sizing: border-box;
 }
-
+*{
+  font-family: 'Arimo', serif;
+}

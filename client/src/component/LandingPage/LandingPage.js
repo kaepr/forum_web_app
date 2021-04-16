@@ -31,7 +31,7 @@ export default function LandingPage() {
             boxShadow="lg"
             p="2"
           >
-            <Text fontSize="32px" fontWeight="bold" letterSpacing="5px">
+            <Text fontSize="48px" fontWeight="bold" letterSpacing="5px" fontFamily="PT Serif" as="i">
               DisQus-Hub
             </Text>
           </Box>
@@ -59,7 +59,7 @@ export default function LandingPage() {
               </Box>
             </Box>
 
-            <Box mt="2">
+            <Box mt="6">
               <div>Copyright &copy; 2021. All rights reserved.</div>
             </Box>
           </Flex>
