@@ -11,6 +11,7 @@ import IndividualPost from '../Post/IndividualPost';
 import { PrivateRoute } from '../../component/PrivateRoute/PrivateRoute';
 import CreatePost from '../Post/CreatePost';
 import MyPostPage from '../Post/MyPostPage';
+import StatsPage from '../StatsPage/StatsPage';
 
 export default function LandingPage() {
   return (
@@ -55,6 +56,7 @@ export default function LandingPage() {
                   />
                   <PrivateRoute path="/createPost" component={CreatePost} />
                   <PrivateRoute path="/myposts" component={MyPostPage} />
+                  <PrivateRoute path="/stats" component={StatsPage}/>
                 </Switch>
               </Box>
             </Box>

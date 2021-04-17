@@ -29,7 +29,7 @@ const Home = () => {
       </Box>
       <Flex flexDirection="column" width="50%" ml="6">
         <Box>
-          <Image src="https://cdn.discordapp.com/attachments/826132651416748035/832316391076003840/undraw_public_discussion_btnw.png"/>
+          <Image src="https://cdn.discordapp.com/attachments/826132651416748035/832316391076003840/undraw_public_discussion_btnw.png" />
         </Box>
         <Box align="center">
           <Flex flexDirection="column" alignItems="center">
