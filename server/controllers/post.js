@@ -190,3 +190,32 @@ export const deleteReply = async (req, res) => {
     });
   }
 };
+
+export const getStats = async (req,res) => {
+  try{
+    const countPostQuery = 'Select count(*) as postCount from posts';
+    const countUserQuery = 'Select count(*) as userCount from userdata';
+    const countTodayUserQuery = 'Select count(*) as memberCount from userdata where (dateCreated = concat(month(curdate()),"/",dayofmonth(curdate()),"/",year(curdate())) OR dateCreated = concat(dayofmonth(curdate()),"/",month(curdate()),"/",year(curdate())))';
+    const mostPopularPostQuery='select UniqueID, Title, Description, SID, posts.UUID, CreatedAt, User_Name from (Select numberReplies ,SID AS "UniqueID" from (select count(SID) as "numberReplies",SID from postreplies GROUP BY SID) AS T where numberReplies = (select max(numberReplies) from (select count(SID) as "numberReplies",SID from postreplies GROUP BY SID) AS P)) AS W, posts,userdata where posts.UUID=userdata.UUID and posts.SID=UniqueID';
+    const connection = await mysql.createConnection(dbConfig);
+    const [countPosts] = await connection.execute(countPostQuery);
+    const [countUsers] = await connection.execute(countUserQuery);
+    const [countTodayUser] = await connection.execute(countTodayUserQuery);
+    const [mostPopularPost] = await connection.execute(mostPopularPostQuery);
+
+    return res.status(200).json({
+      data:{
+       countPosts: countPosts[0],
+       countUsers: countUsers[0],
+       countTodayUsers: countTodayUser[0],
+       mostPopularPost: mostPopularPost 
+      },
+      msg:'Total counted successfully'
+    });
+  } catch(err) {
+    return res.status(500).json({
+      msg:'Error in counting'
+    });
+    
+  }
+}
