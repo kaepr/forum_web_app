@@ -111,6 +111,12 @@ const LoggedInRoutes = () => {
         </Link>
       </RouterLink>
       |
+      <RouterLink to="/stats">
+        <Link fontSize="18px" textTransform="uppercase" pl="8" pr="8">
+          Stats{' '}
+        </Link>
+      </RouterLink>
+      |
       <Link fontSize="18px" textTransform="uppercase" pl="8" onClick={logout}>
         Logout
       </Link>
