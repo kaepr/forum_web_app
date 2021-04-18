@@ -1,0 +1,27 @@
+NewEntryLog
+
+delimiter $
+create trigger NewEntryLog
+after insert
+on userdata for each row
+begin
+insert into log(UUID,Description) values (new.uuid,'Created an Account');
+end $
+
+NewPostLog
+
+create trigger NewPostLog
+after insert
+on posts for each row
+begin
+insert into log(UUID,SID,Description) values (new.uuid,new.sid,'Created a Post');
+END $
+
+NewReplyLog
+
+create trigger NewReplyLog
+after insert
+on postReplies for each row
+begin
+insert into log(UUID,SID,ReplyID,Description) values (new.user_id,new.sid,new.ReplyID,'Created a Reply for the following post');
+end $
