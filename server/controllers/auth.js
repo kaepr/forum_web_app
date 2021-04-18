@@ -4,8 +4,6 @@ import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import mysql from 'mysql2/promise';
 
-import { JWT_SECRET } from '../config/secrets';
-
 export const register = async (req, res) => {
   try {
     const {
@@ -67,7 +65,7 @@ export const register = async (req, res) => {
       {
         userId: user_id
       },
-      JWT_SECRET
+      process.env.JWT_SECRET
     );
 
     return res
@@ -122,7 +120,7 @@ export const login = async (req, res) => {
       {
         userId: existingUser.UUID
       },
-      JWT_SECRET
+      process.env.JWT_SECRET
     );
 
     return res
@@ -163,7 +161,7 @@ export const isLoggedIn = async (req, res) => {
       return res.json({ loggedIn: false, UUID: '' });
     // jwt.verify(token, JWT_SECRET);
 
-    const verified = jwt.verify(token, JWT_SECRET);
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = verified.userId;
     return res.json({
       loggedIn: true,

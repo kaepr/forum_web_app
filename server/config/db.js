@@ -1,6 +1,6 @@
 export const dbConfig = {
-  host: 'us-cdbr-east-03.cleardb.com',
-  user: 'b8943fe2b8c784',
-  password: '6be4667b',
-  database: 'heroku_fcfa696484b3b16'
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database:  process.env.DATABASE_NAME
 };
