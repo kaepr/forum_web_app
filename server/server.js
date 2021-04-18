@@ -3,7 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+const dotenv = require('dotenv');
+
 const app = express();
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 

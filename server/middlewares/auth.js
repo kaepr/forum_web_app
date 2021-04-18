@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../config/secrets';
+//import { JWT_SECRET } from '../config/secrets';
 
 export const isLogged = (req, res, next) => {
   try {
@@ -7,7 +7,7 @@ export const isLogged = (req, res, next) => {
 
     if (!token) return res.status(401).json({ msg: 'Not authorized' });
 
-    const verified = jwt.verify(token, JWT_SECRET);
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
 
     req.userId = verified.userId;
 
