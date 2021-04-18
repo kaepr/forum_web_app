@@ -45,7 +45,7 @@ export const register = async (req, res) => {
     // No user exists, so possible to create new user
     const user_id = uuidv4();
     const createUser =
-      'insert into userdata (UUID, User_Name, Occupation, Age, PhoneNumber, EmailID, password, dateCreated) values (?,?,?,?,?,?,?,?)';
+      'call insertUser(?,?,?,?,?,?,?,?)';
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -63,7 +63,6 @@ export const register = async (req, res) => {
       passwordHash,
       dateString
     ]);
-
     const token = jwt.sign(
       {
         userId: user_id

@@ -8,7 +8,7 @@ export const getAllPosts = async (req, res) => {
       'Select Title, Description, SID, posts.UUID, CreatedAt, User_Name from posts, userdata where posts.UUID=userdata.UUID ORDER BY posts.Time DESC';
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(getPostsQuery);
-    // console.log('res : ', postRows);
+    //console.log('res : ', postRows);
     return res.status(200).json({
       data: postRows
     });
@@ -64,7 +64,6 @@ export const createPost = async (req, res) => {
   try {
     const { title, description } = req.body;
 
-    console.log('title, desc : ', title, description);
 
     if (!title || !description) {
       return res.status(400).json({
@@ -75,14 +74,13 @@ export const createPost = async (req, res) => {
     const user_uuid = req.userId;
     const post_id = uuidv4();
 
-    console.log('uuid : ', user_uuid);
 
     const time = Date.now();
     const today = new Date(time);
     const dateString = today.toLocaleDateString();
 
     const createPostQuery =
-      'insert into posts (UUID, Title, SID, Description, CreatedAt, Time) values (?,?,?,?,?,?)';
+      'call newPost(?,?,?,?,?,?)';
 
     const connection = await mysql.createConnection(dbConfig);
     const [postRows] = await connection.execute(createPostQuery, [
@@ -121,7 +119,7 @@ export const createReply = async (req, res) => {
     // console.log('date string : ', dateString);
 
     const createReplyQuery =
-      'insert into postreplies (ReplyID, user_id, SID, Description, CreatedAt, Time) values (?,?,?,?,?,?)';
+      'call insertPostReplies(?,?,?,?,?,?)';
 
     const connection = await mysql.createConnection(dbConfig);
     const [replyRows] = await connection.execute(createReplyQuery, [
