@@ -15,8 +15,6 @@ const auth = require('./routes/auth');
 const user = require('./routes/user');
 const post = require('./routes/post');
 
-import { JWT_SECRET } from './config/secrets';
-
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -28,7 +26,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   session({
-    secret: JWT_SECRET,
+    secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false
   })
